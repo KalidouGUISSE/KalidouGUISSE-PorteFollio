@@ -30,9 +30,9 @@ export const Navigation = () => {
   const navItems = [
     { id: 'home', label: 'Accueil' },
     { id: 'about', label: 'À Propos' },
-    { id: 'experience', label: 'Parcours' },
-    { id: 'skills', label: 'Compétences' },
     { id: 'projects', label: 'Projets' },
+    { id: 'skills', label: 'Compétences' },
+    { id: 'experience', label: 'Parcours' },
     { id: 'contact', label: 'Contact' },
   ];
 

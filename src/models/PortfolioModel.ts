@@ -97,15 +97,15 @@ export class PortfolioModel {
       personalInfo: {
         name: 'Kalidou GUISSE',
         title: 'Informaticien',
-        phone: '+221784458786',
+        phone: '+221 78 445 8786',
         email: 'kalidouguisse16@gmail.com',
-        location: 'Keur Cheikh, Diourbel',
+        location: 'Dakar',
         country: 'Sénégal',
         photo: '/image.png',
-        linkedin: 'https://www.linkedin.com/in/kalidou-guisse',
+        linkedin: 'https://www.linkedin.com/in/kalidou-guiss%C3%A9-a507402b2/',
         whatsapp: '+221784458786'
       },
-      bio: "Je suis un candidat motivé avec une formation solide en Informatique, spécialisé en Génie Logiciel, et une expérience pratique dans le développement d'applications web et mobiles. Mon objectif est de contribuer efficacement à des projets innovants en intégrant un programme académique avancé ou en rejoignant une organisation dynamique.",
+      bio: "Je suis un candidat motivé avec une solide formation en Informatique, spécialisé en Génie Logiciel. J’ai acquis une expérience pratique dans le développement d’applications web et mobiles à travers des projets académiques et professionnels. J’ai également suivi une formation intensive à la Sonatel Académie (ODC – Orange Digital Center), sous la tutelle de Coach Birame Bailla Wane et Aly Tall Niang, où j’ai réalisé de nombreux projets concrets et travaillé avec une large variété d’outils et de langages. Mon objectif est de mettre mes compétences techniques et mon esprit d’innovation au service de projets ambitieux .",
       experiences: [
         {
           id: 'exp1',

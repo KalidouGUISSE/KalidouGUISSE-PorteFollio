@@ -51,9 +51,9 @@ function AppContent() {
       <main id="home">
         <Hero data={portfolioData} onContact={handleContact} />
         <About data={portfolioData} />
-        <Experience data={portfolioData} />
-        <Skills data={portfolioData} />
         <Projects data={portfolioData} />
+        <Skills data={portfolioData} />
+        <Experience data={portfolioData} />
         <Contact data={portfolioData} onContact={handleContact} />
       </main>
 

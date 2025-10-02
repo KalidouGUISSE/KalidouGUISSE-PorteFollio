@@ -11,7 +11,7 @@ export const Projects = ({ data }: ProjectsProps) => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Projets Académiques
+            Projets Réaliser
           </h2>
           <div className="h-1 w-24 bg-blue-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -23,7 +23,7 @@ export const Projects = ({ data }: ProjectsProps) => {
           {data.projects.map((project, index) => (
             <div
               key={project.id}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up group border border-gray-100 dark:border-gray-700"
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-500 hover:-translate-y-2 animate-fade-in-up group border border-gray-100 dark:border-gray-700"
               style={{ animationDelay: `${index * 200}ms` }}
             >
               <div className="relative bg-gradient-to-br from-blue-500 to-blue-700 p-8 overflow-hidden">
@@ -49,7 +49,7 @@ export const Projects = ({ data }: ProjectsProps) => {
                       {project.technologies.map((tech, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1.5 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-300 text-sm rounded-lg font-medium hover:from-blue-200 hover:to-blue-300 dark:hover:from-blue-800/40 dark:hover:to-blue-700/40 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105"
+                          className="px-3 py-1.5 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-300 text-sm rounded-lg font-medium hover:from-blue-200 hover:to-blue-300 dark:hover:from-blue-800/40 dark:hover:to-blue-700/40 transition-all duration-300 transform hover:scale-105"
                         >
                           {tech}
                         </span>

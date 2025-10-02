@@ -11,14 +11,8 @@ export const Footer = () => {
             Kalidou GUISSE
           </h3>
           <p className="text-blue-100 dark:text-gray-300 text-lg mb-6">
-            Informaticien - Génie Logiciel
+            Développeur Full-stack | Ingénieur Devops
           </p>
-
-          <div className="flex items-center justify-center gap-2 text-blue-100 dark:text-gray-300 mb-6">
-            <span>Fait avec</span>
-            <Heart size={18} className="text-red-400 fill-red-400 animate-pulse" />
-            <span>et beaucoup de café</span>
-          </div>
 
           <div className="pt-6 border-t border-blue-400/30 dark:border-gray-700">
             <p className="text-sm text-blue-100 dark:text-gray-400">

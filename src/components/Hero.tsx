@@ -11,7 +11,7 @@ export const Hero = ({ data, onContact }: HeroProps) => {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/cv-kalidou-guisse.pdf';
+    link.href = '/CV professionnel chargé de communication moderne bleu-1.pdf';
     link.download = 'CV-Kalidou-GUISSE.pdf';
     link.click();
   };
@@ -37,7 +37,7 @@ export const Hero = ({ data, onContact }: HeroProps) => {
               <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-2 animate-slide-in-left bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-400 dark:to-white">
                 {personalInfo.name}
               </h1>
-              <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-blue-600 animate-expand shadow-lg"></div>
+              <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-blue-600 animate-expand shadow-sm"></div>
             </div>
 
             <h2 className="text-2xl md:text-4xl text-blue-600 dark:text-blue-400 font-bold animate-slide-in-left animation-delay-200">
@@ -51,14 +51,14 @@ export const Hero = ({ data, onContact }: HeroProps) => {
             <div className="flex flex-wrap gap-4 pt-2 animate-slide-in-left animation-delay-500">
               <button
                 onClick={scrollToContact}
-                className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
               >
                 Me Contacter
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={handleDownloadCV}
-                className="group flex items-center gap-2 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-gray-200 dark:border-gray-700"
+                className="group flex items-center gap-2 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-semibold px-8 py-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 border-2 border-gray-200 dark:border-gray-700"
               >
                 <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
                 Télécharger CV
@@ -98,7 +98,7 @@ export const Hero = ({ data, onContact }: HeroProps) => {
               {personalInfo.whatsapp && (
                 <button
                   onClick={() => onContact('whatsapp', personalInfo.whatsapp!)}
-                  className="p-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-lg"
+                  className="p-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-110 hover:shadow-md shadow-sm"
                   aria-label="WhatsApp"
                 >
                   <MessageCircle size={24} />
@@ -108,7 +108,7 @@ export const Hero = ({ data, onContact }: HeroProps) => {
               {personalInfo.linkedin && (
                 <button
                   onClick={() => onContact('linkedin', personalInfo.linkedin!)}
-                  className="p-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-lg"
+                  className="p-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-110 hover:shadow-md shadow-sm"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={24} />
@@ -125,7 +125,7 @@ export const Hero = ({ data, onContact }: HeroProps) => {
                 <img
                   src={personalInfo.photo}
                   alt={personalInfo.name}
-                  className="w-80 h-90 md:w-96 md:h-90 object-cover rounded-3xl shadow-2xl border-4 border-white dark:border-gray-800 transform transition-transform duration-500 group-hover:scale-105"
+                  className="w-80 h-90 md:w-96 md:h-90 object-cover rounded-3xl shadow-lg border-4 border-white dark:border-gray-800 transform transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             </div>
