@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { PortfolioData } from '../models/PortfolioModel';
 import { Send, Mail, Phone, MapPin, Linkedin, MessageCircle, CheckCircle2 } from 'lucide-react';
 
@@ -15,14 +16,35 @@ export const Contact = ({ data, onContact }: ContactProps) => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
+    setIsLoading(true);
+    setError('');
+
+    emailjs.send(
+      'YOUR_SERVICE_ID', // Remplacez par votre Service ID EmailJS
+      'YOUR_TEMPLATE_ID', // Remplacez par votre Template ID EmailJS
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'kalidouguisse16@gmail.com'
+      },
+      'YOUR_PUBLIC_KEY' // Remplacez par votre Public Key EmailJS
+    ).then(() => {
+      setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+      setTimeout(() => setIsSubmitted(false), 3000);
+    }).catch((error) => {
+      console.error('Erreur EmailJS:', error);
+      setError('Erreur lors de l\'envoi du message. Veuillez réessayer.');
+    }).finally(() => {
+      setIsLoading(false);
+    });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -191,6 +213,12 @@ export const Contact = ({ data, onContact }: ContactProps) => {
                 />
               </div>
 
+              {error && (
+                <div className="py-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg text-center">
+                  {error}
+                </div>
+              )}
+
               {isSubmitted ? (
                 <div className="flex items-center justify-center gap-2 py-3 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-lg">
                   <CheckCircle2 className="w-5 h-5" />
@@ -199,10 +227,15 @@ export const Contact = ({ data, onContact }: ContactProps) => {
               ) : (
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                  disabled={isLoading}
+                  className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-5 h-5" />
-                  Envoyer le message
+                  {isLoading ? (
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                    <Send className="w-5 h-5" />
+                  )}
+                  {isLoading ? 'Envoi en cours...' : 'Envoyer le message'}
                 </button>
               )}
             </form>
