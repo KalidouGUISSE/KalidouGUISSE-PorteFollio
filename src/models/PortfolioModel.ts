@@ -18,6 +18,7 @@ export interface PortfolioData {
   skills: Skill[];
   languages: Language[];
   projects: Project[];
+  tutors: Tutor[];
 }
 
 export interface Experience {
@@ -53,6 +54,22 @@ export interface Project {
   title: string;
   description: string;
   technologies?: string[];
+  link?: string;
+  docs?: string;
+  frontend?: string;
+}
+
+export interface Tutor {
+  id: string;
+  name: string;
+  role: string;
+  organization?: string;
+  period?: string;
+  description?: string;
+  photo?: string;
+  email?: string;
+  phone?: string;
+  linkedin?: string;
 }
 
 export class PortfolioModel {
@@ -105,7 +122,7 @@ export class PortfolioModel {
         linkedin: 'https://www.linkedin.com/in/kalidou-guiss%C3%A9-a507402b2/',
         whatsapp: '+221784458786'
       },
-      bio: "Je suis un candidat motivé avec une solide formation en Informatique, spécialisé en Génie Logiciel. J’ai acquis une expérience pratique dans le développement d’applications web et mobiles à travers des projets académiques et professionnels. J’ai également suivi une formation intensive à la Sonatel Académie (ODC – Orange Digital Center), sous la tutelle de Coach Birame Bailla Wane et Aly Tall Niang, où j’ai réalisé de nombreux projets concrets et travaillé avec une large variété d’outils et de langages. Mon objectif est de mettre mes compétences techniques et mon esprit d’innovation au service de projets ambitieux .",
+      bio: "Je suis un candidat motivé avec une solide formation en Informatique, spécialisé en Génie Logiciel. J’ai acquis une expérience pratique dans le développement d’applications web et mobiles à travers des projets académiques et professionnels. J’ai également suivi une formation intensive à la Sonatel Académie (ODC – Orange Digital Center), où j’ai bénéficié des enseignements de formateurs expérimentés et réalisé de nombreux projets concrets avec une large variété d’outils et de langages. Mon objectif est de mettre mes compétences techniques et mon esprit d’innovation au service de projets ambitieux.",
       experiences: [
         {
           id: 'exp1',
@@ -196,46 +213,101 @@ export class PortfolioModel {
       projects: [
         {
           id: 'proj1',
+          title: 'API Bancaire Sécurisée',
+          description:
+            "Développement d'une API RESTful complète pour la gestion de comptes bancaires : création de comptes, transactions, blocage/déblocage, calcul dynamique du solde. Sécurité avancée via Laravel Passport & Sanctum, notifications SMS (Twilio), emails transactionnels, architecture modulaire et tests unitaires. Déploiement Docker + Render + Neon PostgreSQL.",
+          technologies: [
+            "PHP", "Laravel 10", "Passport", "Sanctum",
+            "PostgreSQL", "Twilio", "Docker", "Swagger", "PHPUnit"
+          ],
+          link: "https://github.com/KalidouGUISSE/projetlaravel/tree/production",
+          docs: "https://kalidou-guisse-projetlaravel.onrender.com/api/documentation#"
+        },
+
+        {
+          id: 'proj2',
+          title: 'Plateforme RH & Gestion des Salaires',
+          description:
+            "Application web complète pour la gestion des employés et de la paie : supervision RH, rôles (Super Admin, Admin, Caissier), tableaux de bord statistiques, génération de bulletins PDF, authentification JWT, validations Zod et architecture scalable TypeScript. Documentation Swagger entièrement automatisée.",
+          technologies: [
+            "React", "Vite", "TypeScript", "TailwindCSS",
+            "Node.js", "Express", "Prisma", "JWT", "Zod"
+          ],
+          link: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
+          frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
+          docs: "https://backend-gestion-salaire.onrender.com/api-docs/"
+        },
+
+        {
+          id: 'proj3',
+          title: 'Système de Gestion de Cargaisons',
+          description:
+            "Application FullStack permettant la gestion des cargaisons aériennes, maritimes et routières avec règles métiers complexes : compatibilité produits/cargaisons, calcul automatique des montants, limitation des produits, mise à jour en temps réel de la logistique. Interface moderne Tailwind et API TypeScript.",
+          technologies: ["Node.js", "TypeScript", "MySQL", "TailwindCSS", "JavaScript"],
+          link: "https://github.com/KalidouGUISSE/gestionCargaisonV"
+        },
+
+        {
+          id: 'proj4',
+          title: 'Gestion des Apprenants ODC',
+          description:
+            "Plateforme de gestion académique pour un centre de formation : enregistrement des apprenants, promotions, filières, absences, notes, automatisation des tâches administratives. Développée from-scratch en PHP avec architecture SOLID + MVC.",
+          technologies: ["PHP", "Architecture MVC", "JSON"],
+          link: "https://github.com/yourusername/odc-student-management"
+        },
+
+        {
+          id: 'proj5',
           title: 'Gestion de Pharmacie',
-          description: "Conception et développement d'une application web pour automatiser la gestion des stocks, des ventes et des produits d'une pharmacie. L'application offre une plateforme d'échange entre pharmacies et particuliers, tout en permettant de signaler les produits en voie de péremption ou de rupture.",
-          technologies: ['PHP', 'Laravel', 'MySQL', 'HTML', 'CSS', 'JavaScript']
+          description:
+            "Application web permettant d’automatiser la gestion des stocks, ventes et produits. Système d’alertes pour les produits en rupture ou proches de péremption. Plateforme d’échange entre pharmacies et clients.",
+          technologies: ["PHP", "Laravel", "MySQL", "HTML", "CSS", "JavaScript"],
+          // link: "https://github.com/yourusername/pharmacy-management"
         },
+
         {
-          id: 'proj1',
-          title: 'Gestion de Cargaison',
-          description: "Système de gestion de cargaisons pour transport aérien, maritime et routier avec règles métiers complexes et suivi logistique.",
-          technologies: ['Node',"typescript",'tailwindcss', 'MySQL', 'JavaScript']
+          id: 'proj6',
+          title: 'MaxitSA – Application de Transfert d’Argent',
+          description:
+            "Application web de transfert d’argent avec architecture propre basée sur Repository – Service – Controller. Gestion de comptes, transactions, suivi en temps réel, API REST, stockage cloud et dockerisation complète.",
+          technologies: ["PHP", "JavaScript", "Docker", "Render"],
+          link: "https://github.com/yourusername/maxitsa"
         },
+
         {
-          id: 'proj1',
-          title: 'Application de Gestion des Salaires',
-          description: "Plateforme multi-entreprises de gestion RH avec génération automatique de bulletins de paie, suivi des employés et historiques détaillés.",
-          technologies: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL"]
-        },
-        {
-          id: 'proj1',
-          title: 'API backend Node.js avancée',
-          description: "API REST sécurisée avec architecture en couches, validations Zod, authentification JWT et documentation Swagger.",
-          technologies: ["Node.js", "TypeScript", "Prisma", "Zod"]
-        },
-        {
-          id: 'proj1',
+          id: 'proj7',
           title: 'Clone WhatsApp',
-          description: "Application de messagerie en temps réel avec envoi/réception de messages, interface utilisateur responsive et notifications.",
-          technologies: ["JavaScript", "HTML/CSS"]
+          description:
+            "Application web de messagerie inspirée de WhatsApp avec envoi et réception de messages, interface responsive moderne, gestion des conversations et notifications.",
+          technologies: ["JavaScript", "HTML", "CSS"],
+          link: "https://github.com/yourusername/whatsapp-clone"
+        }
+      ],
+      tutors: [
+        {
+          id: 'tutor1',
+          name: 'Architecte Logiciel Birame Bailla Wane',
+          role: 'Formateur Principal Backend',
+          organization: 'Sonatel Académie (ODC - Orange Digital Center)',
+          // period: '2025',
+          description: 'Architecte Logiciel, Consultant Java Micro-service, Co-founder Ecole 221, Développeur FullStack, Formateur en Développement Web Mobile',
+          photo: '/Coach Birame Bailla Wane.png',
+          // email: 'birame.wane@sonatel.com',
+          phone: '+221 77 766 95 95',
+          linkedin: 'https://linkedin.com/in/birane-baila-wane'
         },
         {
-          id: 'proj1',
-          title: 'MaxitSA',
-          description: "Maxitsa est une application web de transfert d’argent développée en PHP orienté objet, suivant une architecture propre et modulaire basée sur les couches Repository – Service – Controller. Elle permet aux utilisateurs d’effectuer des transactions financières sécurisées, de gérer leurs comptes principaux et secondaires, et de consulter l’historique de leurs opérations en temps réel.",
-          technologies: ["Php", "JavaScript","Docker","Render"]
-        },
-        {
-          id: 'proj1',
-          title: 'Gestion des apprenants ODC',
-          description: "Ce projet vise à digitaliser la gestion des étudiants d’un centre de formation. L’application permet d’enregistrer les apprenants, de suivre leur évolution (promotions, filières, notes, absences) et d’automatiser les tâches administratives liées à la formation. Elle a été conçue avec une architecture propre respectant les principes SOLID et MVC, garantissant une bonne maintenabilité et évolutivité du code.",
-          technologies: ["Php", "Json server"]
-        },
+          id: 'tutor2',
+          name: 'Ingénieur en génie logiciel Aly Tall Niang',
+          role: 'Formateur Principal Frontend',
+          organization: 'Sonatel Académie (ODC - Orange Digital Center)',
+          // period: '2025',
+          description: 'Ingénieur en génie logiciel | Formateur en développement Web et mobile à Orange Digital Center.',
+          photo: '/Aly Tall Niang.png',
+          // email: 'aly.niang@sonatel.com',
+          phone: '+221 77 182 54 14',
+          linkedin: 'https://linkedin.com/in/aly-tall-niang-sonatel-academy'
+        }
       ]
     };
   }

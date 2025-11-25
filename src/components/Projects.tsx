@@ -1,5 +1,5 @@
 import { PortfolioData } from '../models/PortfolioModel';
-import { FolderGit2, ExternalLink } from 'lucide-react';
+import { FolderGit2, ExternalLink, Github, BookOpen } from 'lucide-react';
 
 interface ProjectsProps {
   data: PortfolioData;
@@ -58,10 +58,26 @@ export const Projects = ({ data }: ProjectsProps) => {
                   </div>
                 )}
 
-                <button className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors group/btn">
-                  Voir les détails
-                  <ExternalLink size={18} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                </button>
+                <div className="flex flex-wrap gap-4 mt-6">
+                  {project.link && (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors group/btn">
+                      <Github size={18} />
+                      Voir sur GitHub
+                    </a>
+                  )}
+                  {project.docs && (
+                    <a href={project.docs} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-semibold transition-colors group/btn">
+                      <BookOpen size={18} />
+                      Documentation
+                    </a>
+                  )}
+                  {project.frontend && (
+                    <a href={project.frontend} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors group/btn">
+                      <ExternalLink size={18} />
+                      Frontend
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))}

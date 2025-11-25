@@ -33,6 +33,7 @@ export const Navigation = () => {
     { id: 'projects', label: 'Projets' },
     { id: 'skills', label: 'Compétences' },
     { id: 'experience', label: 'Parcours' },
+    { id: 'tutors', label: 'Tuteurs' },
     { id: 'contact', label: 'Contact' },
   ];
 

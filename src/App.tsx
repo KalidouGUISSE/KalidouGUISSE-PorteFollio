@@ -9,6 +9,7 @@ import { About } from './components/About';
 import { Experience } from './components/Experience';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
+import { Tutors } from './components/Tutors';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
@@ -54,6 +55,7 @@ function AppContent() {
         <Projects data={portfolioData} />
         <Skills data={portfolioData} />
         <Experience data={portfolioData} />
+        <Tutors data={portfolioData} />
         <Contact data={portfolioData} onContact={handleContact} />
       </main>
 
