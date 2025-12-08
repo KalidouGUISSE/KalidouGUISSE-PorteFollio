@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PortfolioController } from './controllers/PortfolioController';
 import { PortfolioData } from './models/PortfolioModel';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { AnimatedBackground } from './components/AnimatedBackground';
-import { Navigation } from './components/Navigation';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Experience } from './components/Experience';
-import { Skills } from './components/Skills';
-import { Projects } from './components/Projects';
-import { Tutors } from './components/Tutors';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import { Layout } from './components/Layout';
+import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { SkillsPage } from './pages/SkillsPage';
+import { ExperiencePage } from './pages/ExperiencePage';
+import { TutorsPage } from './pages/TutorsPage';
+import { ContactPage } from './pages/ContactPage';
 
 function AppContent() {
   const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(null);
@@ -45,22 +44,19 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden bg-white dark:bg-gray-900">
-      <AnimatedBackground />
-      <Navigation />
-
-      <main id="home">
-        <Hero data={portfolioData} onContact={handleContact} />
-        <About data={portfolioData} />
-        <Projects data={portfolioData} />
-        <Skills data={portfolioData} />
-        <Experience data={portfolioData} />
-        <Tutors data={portfolioData} />
-        <Contact data={portfolioData} onContact={handleContact} />
-      </main>
-
-      <Footer />
-    </div>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage data={portfolioData} onContact={handleContact} />} />
+          <Route path="/about" element={<AboutPage data={portfolioData} />} />
+          <Route path="/projects" element={<ProjectsPage data={portfolioData} />} />
+          <Route path="/skills" element={<SkillsPage data={portfolioData} />} />
+          <Route path="/experience" element={<ExperiencePage data={portfolioData} />} />
+          <Route path="/tutors" element={<TutorsPage data={portfolioData} />} />
+          <Route path="/contact" element={<ContactPage data={portfolioData} onContact={handleContact} />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
