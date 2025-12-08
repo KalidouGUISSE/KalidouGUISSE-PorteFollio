@@ -312,7 +312,7 @@ export class PortfolioModel {
 
         {
           "id": "payroll-backend-api",
-          "title": "API Backend - Système de Gestion des Salaires Multi-Entreprises",
+          "title": "API - Système de Gestion des Salaires Multi-Entreprises",
           "shortDescription": "API REST complète développée avec Node.js et TypeScript pour la gestion automatisée des salaires. Elle offre une authentification sécurisée, gestion des employés avec QR codes, cycles de paie automatisés et génération de documents PDF. L'architecture modulaire assure une scalabilité optimale avec tests automatiques et documentation Swagger intégrée.",
           "achievements": [
             "Développement d'une API REST robuste avec authentification JWT et autorisation basée sur les rôles (SUPER_ADMIN, ADMIN, CASHIER, EMPLOYEE)",
@@ -333,12 +333,11 @@ export class PortfolioModel {
             "public/assete/apiGestionPaie/image.png",
           ],
           links: {
-            backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
             frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
-            docs: "https://backend-gestion-salaire.onrender.com/api-docs"
+            backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
+            demo: "https://backend-gestion-salaire.onrender.com/api-docs",
           }
         },
-
         {
           "id": "payroll-frontend-app",
           "title": "Interface Frontend - Application de Gestion des Salaires",
@@ -369,8 +368,10 @@ export class PortfolioModel {
           links: {
             backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
             frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
+            demo:"https://frontend-gestion-salaire.vercel.app"
           }
         },
+
         {
           id: 'proj3',
           title: 'Système de Gestion de Cargaisons',

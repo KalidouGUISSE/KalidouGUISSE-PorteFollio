@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { PortfolioData } from '../models/PortfolioModel';
-import { Send, Mail, Phone, MapPin, Linkedin, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, Linkedin, MessageCircle, AlertCircle } from 'lucide-react';
 
 interface ContactProps {
   data: PortfolioData;
@@ -15,40 +14,25 @@ export const Contact = ({ data, onContact }: ContactProps) => {
     subject: '',
     message: ''
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<{[key: string]: string}>({});
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError('');
 
-    emailjs.send(
-      'YOUR_SERVICE_ID', // Remplacez par votre Service ID EmailJS
-      'YOUR_TEMPLATE_ID', // Remplacez par votre Template ID EmailJS
-      {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'kalidouguisse16@gmail.com'
-      },
-      'YOUR_PUBLIC_KEY' // Remplacez par votre Public Key EmailJS
-    ).then(() => {
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 3000);
-    }).catch((error) => {
-      console.error('Erreur EmailJS:', error);
-      setError('Erreur lors de l\'envoi du message. Veuillez réessayer.');
-    }).finally(() => {
-      setIsLoading(false);
-    });
+    // Temporarily disabled - show message to use direct contact methods
+    setError('Le formulaire est temporairement désactivé. Veuillez utiliser les boutons de contact direct ci-dessus.');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors({ ...fieldErrors, [name]: '' });
+    }
   };
 
   const contactMethods = [
@@ -151,7 +135,7 @@ export const Contact = ({ data, onContact }: ContactProps) => {
             <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Nom complet
+                  Nom complet *
                 </label>
                 <input
                   type="text"
@@ -159,15 +143,22 @@ export const Contact = ({ data, onContact }: ContactProps) => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white"
+                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white ${
+                    fieldErrors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                  }`}
                   placeholder="Votre nom"
                 />
+                {fieldErrors.name && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4" />
+                    {fieldErrors.name}
+                  </p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Email
+                  Email *
                 </label>
                 <input
                   type="email"
@@ -175,15 +166,22 @@ export const Contact = ({ data, onContact }: ContactProps) => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white"
+                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white ${
+                    fieldErrors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                  }`}
                   placeholder="votre@email.com"
                 />
+                {fieldErrors.email && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4" />
+                    {fieldErrors.email}
+                  </p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Sujet
+                  Sujet *
                 </label>
                 <input
                   type="text"
@@ -191,26 +189,40 @@ export const Contact = ({ data, onContact }: ContactProps) => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white"
+                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white ${
+                    fieldErrors.subject ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                  }`}
                   placeholder="Sujet de votre message"
                 />
+                {fieldErrors.subject && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4" />
+                    {fieldErrors.subject}
+                  </p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
+                  Message *
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   rows={5}
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none text-gray-900 dark:text-white"
+                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none text-gray-900 dark:text-white ${
+                    fieldErrors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                  }`}
                   placeholder="Votre message..."
                 />
+                {fieldErrors.message && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4" />
+                    {fieldErrors.message}
+                  </p>
+                )}
               </div>
 
               {error && (
@@ -219,25 +231,23 @@ export const Contact = ({ data, onContact }: ContactProps) => {
                 </div>
               )}
 
-              {isSubmitted ? (
-                <div className="flex items-center justify-center gap-2 py-3 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-lg">
-                  <CheckCircle2 className="w-5 h-5" />
-                  <span className="font-medium">Message envoyé avec succès!</span>
-                </div>
-              ) : (
+              <div className="space-y-3">
+                {/* Temporarily disabled until EmailJS is configured */}
                 <button
                   type="submit"
-                  disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 disabled:cursor-not-allowed"
+                  disabled={true}
+                  className="w-full flex items-center justify-center gap-2 bg-gray-400 text-gray-200 font-semibold py-3 px-6 rounded-lg cursor-not-allowed"
                 >
-                  {isLoading ? (
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  ) : (
-                    <Send className="w-5 h-5" />
-                  )}
-                  {isLoading ? 'Envoi en cours...' : 'Envoyer le message'}
+                  <Send className="w-5 h-5" />
+                  Fonctionnalité temporairement désactivée
                 </button>
-              )}
+
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                  Le formulaire de contact sera activé une fois EmailJS configuré.
+                  <br />
+                  Utilisez les boutons de contact direct ci-dessus pour me joindre.
+                </p>
+              </div>
             </form>
           </div>
         </div>

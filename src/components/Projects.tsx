@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { PortfolioData } from '../models/PortfolioModel';
-import { Github, BookOpen, ExternalLink, Image as ImageIcon, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { Github, BookOpen, ExternalLink, Image as ImageIcon, ChevronLeft, ChevronRight, Pause, Play, X } from 'lucide-react';
 
 interface ProjectsProps {
   data: PortfolioData;
@@ -15,6 +15,7 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -99,7 +100,8 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
               <img
                 src={image}
                 alt={`${projectTitle} - Aperçu ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => setZoomedImage(image)}
               />
             </div>
           ))}
@@ -157,6 +159,30 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
           {currentIndex + 1} / {images.length}
         </div>
       </div>
+
+      {/* Modal de zoom */}
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setZoomedImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-full">
+            <img
+              src={zoomedImage}
+              alt={`${projectTitle} - Zoom`}
+              className="max-w-full max-h-full object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              onClick={() => setZoomedImage(null)}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+              aria-label="Fermer le zoom"
+            >
+              <X size={24} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -198,6 +224,28 @@ export const Projects = ({ data }: ProjectsProps) => {
                       >
                         <Github size={18} />
                         GitHub
+                      </a>
+                    )}
+                    {project.links.backend && (
+                      <a
+                        href={project.links.backend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                      >
+                        <Github size={18} />
+                        Backend
+                      </a>
+                    )}
+                    {project.links.frontend && (
+                      <a
+                        href={project.links.frontend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                      >
+                        <Github size={18} />
+                        Frontend
                       </a>
                     )}
                     {project.links.docs && (
