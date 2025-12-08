@@ -52,11 +52,21 @@ export interface Language {
 export interface Project {
   id: string;
   title: string;
-  description: string;
-  technologies?: string[];
-  link?: string;
-  docs?: string;
-  frontend?: string;
+  shortDescription: string; // Description impactante (3-4 lignes)
+  achievements: string[]; // Réalisations clés (5-8 bullet points)
+  technologies: {
+    core: string[]; // Technologies principales
+    tools: string[]; // Outils
+    packages: string[]; // Packages/frameworks
+  };
+  images?: string[]; // 1-2 images (mockups/captures)
+  links: {
+    github?: string; // Repository principal
+    backend?: string; // GitHub backend
+    frontend?: string; // GitHub ou déploiement frontend
+    docs?: string; // Documentation
+    demo?: string; // Démo/live
+  };
 }
 
 export interface Tutor {
@@ -201,86 +211,204 @@ export class PortfolioModel {
         },
         {
           id: 'lang2',
+          name: 'Wolof',
+          level: 'Bilangue'
+        },
+        {
+          id: 'lang3',
           name: 'Français',
           level: 'Courant'
         },
         {
           id: 'lang3',
-          name: 'Wolof',
+          name: 'Français',
           level: 'Notions'
-        }
+        },
       ],
       projects: [
         {
           id: 'proj1',
           title: 'API Bancaire Sécurisée',
-          description:
-            "Développement d'une API RESTful complète pour la gestion de comptes bancaires : création de comptes, transactions, blocage/déblocage, calcul dynamique du solde. Sécurité avancée via Laravel Passport & Sanctum, notifications SMS (Twilio), emails transactionnels, architecture modulaire et tests unitaires. Déploiement Docker + Render + Neon PostgreSQL.",
-          technologies: [
-            "PHP", "Laravel 10", "Passport", "Sanctum",
-            "PostgreSQL", "Twilio", "Docker", "Swagger", "PHPUnit"
+          shortDescription: "API RESTful robuste pour la gestion complète de comptes bancaires avec sécurité avancée et architecture modulaire. Déployée en production avec monitoring temps réel.",
+          achievements: [
+            "Développement d'API RESTful complète avec 15+ endpoints sécurisés",
+            "Implémentation d'authentification JWT avec Laravel Passport & Sanctum",
+            "Intégration de notifications SMS (Twilio) et emails transactionnels",
+            "Architecture modulaire avec séparation claire des responsabilités",
+            "Tests unitaires et d'intégration (PHPUnit) avec couverture >80%",
+            "Déploiement automatisé Docker + Render + PostgreSQL Neon",
+            "Documentation API interactive avec Swagger/OpenAPI"
           ],
-          link: "https://github.com/KalidouGUISSE/projetlaravel/tree/production",
-          docs: "https://kalidou-guisse-projetlaravel.onrender.com/api/documentation#"
+          technologies: {
+            core: ["PHP 8.1", "Laravel 10", "PostgreSQL"],
+            tools: ["Docker", "Git", "Postman", "VS Code"],
+            packages: ["Laravel Passport", "Laravel Sanctum", "Twilio SDK", "PHPUnit", "Swagger"]
+          },
+          images: [
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+          ],
+          links: {
+            github: "https://github.com/KalidouGUISSE/projetlaravel/tree/production",
+            docs: "https://kalidou-guisse-projetlaravel.onrender.com/api/documentation",
+            demo: "https://kalidou-guisse-projetlaravel.onrender.com"
+          }
         },
 
         {
           id: 'proj2',
           title: 'Plateforme RH & Gestion des Salaires',
-          description:
-            "Application web complète pour la gestion des employés et de la paie : supervision RH, rôles (Super Admin, Admin, Caissier), tableaux de bord statistiques, génération de bulletins PDF, authentification JWT, validations Zod et architecture scalable TypeScript. Documentation Swagger entièrement automatisée.",
-          technologies: [
-            "React", "Vite", "TypeScript", "TailwindCSS",
-            "Node.js", "Express", "Prisma", "JWT", "Zod"
+          shortDescription: "Solution complète de gestion RH avec architecture distribuée, authentification avancée et génération automatique de bulletins de salaire. Interface moderne avec tableaux de bord interactifs.",
+          achievements: [
+            "Développement d'application full-stack avec séparation backend/frontend",
+            "Implémentation de système de rôles (Super Admin, Admin, Caissier)",
+            "Création de tableaux de bord statistiques avec visualisations dynamiques",
+            "Génération automatique de bulletins PDF avec mise en page professionnelle",
+            "Authentification JWT sécurisée avec gestion des sessions",
+            "Validation des données côté serveur avec Zod",
+            "Documentation API automatisée avec Swagger"
           ],
-          link: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
-          frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
-          docs: "https://backend-gestion-salaire.onrender.com/api-docs/"
+          technologies: {
+            core: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+            tools: ["Vite", "Prisma", "Git", "VS Code"],
+            packages: ["Express", "JWT", "Zod", "TailwindCSS", "React Router"]
+          },
+          images: [
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+          ],
+          links: {
+            backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
+            frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
+            docs: "https://backend-gestion-salaire.onrender.com/api-docs"
+          }
         },
 
         {
           id: 'proj3',
           title: 'Système de Gestion de Cargaisons',
-          description:
-            "Application FullStack permettant la gestion des cargaisons aériennes, maritimes et routières avec règles métiers complexes : compatibilité produits/cargaisons, calcul automatique des montants, limitation des produits, mise à jour en temps réel de la logistique. Interface moderne Tailwind et API TypeScript.",
-          technologies: ["Node.js", "TypeScript", "MySQL", "TailwindCSS", "JavaScript"],
-          link: "https://github.com/KalidouGUISSE/gestionCargaisonV"
+          shortDescription: "Plateforme complète de gestion logistique multi-modale (air, mer, route) avec règles métier complexes et calculs automatiques. Interface moderne avec mises à jour temps réel.",
+          achievements: [
+            "Développement d'application full-stack avec architecture modulaire",
+            "Implémentation de règles métier complexes pour compatibilité produits/cargaisons",
+            "Calcul automatique des montants et limitations de produits",
+            "Interface utilisateur moderne avec TailwindCSS",
+            "API TypeScript robuste avec gestion d'erreurs avancée",
+            "Optimisation des performances pour gros volumes de données",
+            "Système de notifications temps réel pour mises à jour logistiques"
+          ],
+          technologies: {
+            core: ["Node.js", "TypeScript", "MySQL"],
+            tools: ["Git", "VS Code", "Postman"],
+            packages: ["Express", "TailwindCSS", "Socket.io", "Joi"]
+          },
+          images: [
+            "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop"
+          ],
+          links: {
+            github: "https://github.com/KalidouGUISSE/gestionCargaisonV"
+          }
         },
 
         {
           id: 'proj4',
           title: 'Gestion des Apprenants ODC',
-          description:
-            "Plateforme de gestion académique pour un centre de formation : enregistrement des apprenants, promotions, filières, absences, notes, automatisation des tâches administratives. Développée from-scratch en PHP avec architecture SOLID + MVC.",
-          technologies: ["PHP", "Architecture MVC", "JSON"],
-          link: "https://github.com/yourusername/odc-student-management"
+          shortDescription: "Plateforme académique complète pour la gestion d'un centre de formation avec automatisation administrative et suivi pédagogique détaillé.",
+          achievements: [
+            "Développement from-scratch avec architecture SOLID + MVC",
+            "Système complet de gestion des apprenants et promotions",
+            "Suivi des absences, notes et filières académiques",
+            "Automatisation des tâches administratives répétitives",
+            "Interface intuitive pour enseignants et administrateurs",
+            "Génération automatique de rapports et statistiques",
+            "Sécurité avancée avec gestion des rôles et permissions"
+          ],
+          technologies: {
+            core: ["PHP", "MySQL", "HTML/CSS"],
+            tools: ["Git", "XAMPP", "VS Code"],
+            packages: ["MVC Framework", "PDO", "Bootstrap"]
+          },
+          images: [
+            "public/assete/image1 copy.png",
+            "public/assete/image1.png",
+            "public/assete/image2.png"
+          ],
+          links: {
+            github: "https://github.com/yourusername/odc-student-management"
+          }
         },
 
         {
           id: 'proj5',
           title: 'Gestion de Pharmacie',
-          description:
-            "Application web permettant d’automatiser la gestion des stocks, ventes et produits. Système d’alertes pour les produits en rupture ou proches de péremption. Plateforme d’échange entre pharmacies et clients.",
-          technologies: ["PHP", "Laravel", "MySQL", "HTML", "CSS", "JavaScript"],
-          // link: "https://github.com/yourusername/pharmacy-management"
+          shortDescription: "Solution complète d'automatisation pour pharmacies avec gestion intelligente des stocks et système d'alertes prédictives.",
+          achievements: [
+            "Développement d'application web full-stack Laravel",
+            "Système de gestion automatisée des stocks et inventaires",
+            "Implémentation d'alertes pour produits en rupture ou périmés",
+            "Plateforme d'échange B2B entre pharmacies",
+            "Interface client pour consultation de disponibilité",
+            "Génération automatique de rapports de vente",
+            "Optimisation des performances pour gros volumes de données"
+          ],
+          technologies: {
+            core: ["PHP", "Laravel", "MySQL"],
+            tools: ["Composer", "Git", "VS Code"],
+            packages: ["Laravel Framework", "Eloquent ORM", "Blade Templates"]
+          },
+          links: {
+            github: "https://github.com/yourusername/pharmacy-management"
+          }
         },
 
         {
           id: 'proj6',
-          title: 'MaxitSA – Application de Transfert d’Argent',
-          description:
-            "Application web de transfert d’argent avec architecture propre basée sur Repository – Service – Controller. Gestion de comptes, transactions, suivi en temps réel, API REST, stockage cloud et dockerisation complète.",
-          technologies: ["PHP", "JavaScript", "Docker", "Render"],
-          link: "https://github.com/yourusername/maxitsa"
+          title: 'MaxitSA – Application de Transfert d\'Argent',
+          shortDescription: "Application de transfert d'argent avec architecture propre et suivi temps réel des transactions financières.",
+          achievements: [
+            "Architecture Repository-Service-Controller propre",
+            "Développement d'API REST complète pour transferts",
+            "Gestion sécurisée des comptes utilisateurs et transactions",
+            "Suivi temps réel avec notifications push",
+            "Intégration de stockage cloud pour données sensibles",
+            "Dockerisation complète pour déploiement scalable",
+            "Tests automatisés et monitoring de performance"
+          ],
+          technologies: {
+            core: ["PHP", "JavaScript", "MySQL"],
+            tools: ["Docker", "Git", "Jenkins"],
+            packages: ["Laravel", "Socket.io", "AWS SDK", "PHPUnit"]
+          },
+          links: {
+            github: "https://github.com/yourusername/maxitsa",
+            demo: "https://maxitsa-demo.onrender.com"
+          }
         },
 
         {
           id: 'proj7',
           title: 'Clone WhatsApp',
-          description:
-            "Application web de messagerie inspirée de WhatsApp avec envoi et réception de messages, interface responsive moderne, gestion des conversations et notifications.",
-          technologies: ["JavaScript", "HTML", "CSS"],
-          link: "https://github.com/yourusername/whatsapp-clone"
+          shortDescription: "Application de messagerie web moderne inspirée de WhatsApp avec interface responsive et fonctionnalités temps réel.",
+          achievements: [
+            "Développement d'interface utilisateur moderne et responsive",
+            "Implémentation de système de messagerie temps réel",
+            "Gestion avancée des conversations et contacts",
+            "Système de notifications push pour nouveaux messages",
+            "Optimisation des performances pour mobile et desktop",
+            "Interface intuitive avec animations fluides",
+            "Support multi-navigateurs et compatibilité cross-platform"
+          ],
+          technologies: {
+            core: ["JavaScript", "HTML5", "CSS3"],
+            tools: ["Git", "VS Code", "Chrome DevTools"],
+            packages: ["Socket.io", "LocalStorage API", "Web Notifications API"]
+          },
+          links: {
+            github: "https://github.com/yourusername/whatsapp-clone",
+            demo: "https://whatsapp-clone-demo.netlify.app"
+          }
         }
       ],
       tutors: [
@@ -312,88 +440,3 @@ export class PortfolioModel {
     };
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "projects": [
-//     {
-//       "id": 8,
-//       "title": "Gestion de cargaisons",
-//       "description": "Système de gestion de cargaisons pour transport aérien, maritime et routier avec règles métiers complexes et suivi logistique.",
-//       "stack": ["TypeScript", "MySQL"],
-//       "year": "2024",
-//       "github": "https://github.com/abdoulayely-7/Gestion-Cargaison",
-//       "tags": ["frontend", "typescript", "logistics"]
-//     },
-//     {
-//       "id": 9,
-//       "title": "Application de gestion des salaires",
-//       "description": "Plateforme multi-entreprises de gestion RH avec génération automatique de bulletins de paie, suivi des employés et historiques détaillés.",
-//       "stack": ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL"],
-//       "year": "2024",
-//       "github": "#",
-//       "tags": ["fullstack", "typescript", "react"]
-//     },
-//     {
-//       "id": 10,
-//       "title": "API backend Node.js avancée",
-//       "description": "API REST sécurisée avec architecture en couches, validations Zod, authentification JWT et documentation Swagger.",
-//       "stack": ["Node.js", "TypeScript", "Prisma", "Zod"],
-//       "year": "2024",
-//       "github": "#",
-//       "tags": ["backend", "typescript", "api"]
-//     },
-//     {
-//       "id": 11,
-//       "title": "Clone WhatsApp",
-//       "description": "Application de messagerie en temps réel avec envoi/réception de messages, interface utilisateur responsive et notifications.",
-//       "stack": ["JavaScript", "HTML/CSS"],
-//       "year": "2023",
-//       "github": "https://github.com/abdoulayely-7/projet_whatsapp_frontend",
-//       "tags": ["frontend", "javascript"]
-//     },
-//     {
-//       "id": 12,
-//       "title": "MaxitSA",
-//       "description": "Maxitsa est une application web de transfert d’argent développée en PHP orienté objet, suivant une architecture propre et modulaire basée sur les couches Repository – Service – Controller. Elle permet aux utilisateurs d’effectuer des transactions financières sécurisées, de gérer leurs comptes principaux et secondaires, et de consulter l’historique de leurs opérations en temps réel.",
-//       "stack": ["Php", "JavaScript","Docker","Render"],
-//       "year": "2025",
-//       "github": "https://github.com/abdoulayely-7/pointage_odc",
-//       "tags": ["backend", "finance"]
-//     }
-//     ,
-//     {
-//       "id": 12,
-//       "title": "Gestion des apprenants ODC",
-//       "description": "Ce projet vise à digitaliser la gestion des étudiants d’un centre de formation. L’application permet d’enregistrer les apprenants, de suivre leur évolution (promotions, filières, notes, absences) et d’automatiser les tâches administratives liées à la formation. Elle a été conçue avec une architecture propre respectant les principes SOLID et MVC, garantissant une bonne maintenabilité et évolutivité du code.",
-//       "stack": ["Php", "Json server"],
-//       "year": "2025",
-//       "github": "https://github.com/abdoulayely-7/pointage_odc",
-//       "tags": ["backend", "education"]
-//     }
-//   ],
