@@ -10,7 +10,7 @@ export const About = ({ data }: AboutProps) => {
     {
       icon: <Code2 className="w-6 h-6" />,
       title: 'Développement Full Stack',
-      description: 'Expert en développement web et mobile avec Laravel, Flutter et React'
+      description: 'Développement web et mobile avec Laravel, Flutter, Node.js, React, Spring Boot, Angular'
     },
     {
       icon: <Zap className="w-6 h-6" />,
@@ -20,7 +20,7 @@ export const About = ({ data }: AboutProps) => {
     {
       icon: <Users className="w-6 h-6" />,
       title: 'Travail d\'équipe',
-      description: 'Collaboration efficace en méthodologies agiles (Scrum, Kanban)'
+      description: 'Collaboration efficace en méthodologies agiles (MOTICAP)'
     },
     {
       icon: <Award className="w-6 h-6" />,

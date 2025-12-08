@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { PortfolioData } from '../models/PortfolioModel';
 import { Phone, Mail, MapPin, Linkedin, MessageCircle, Download, ArrowRight, Sparkles } from 'lucide-react';
 
@@ -8,6 +9,7 @@ interface HeroProps {
 
 export const Hero = ({ data, onContact }: HeroProps) => {
   const { personalInfo } = data;
+  const navigate = useNavigate();
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
@@ -16,11 +18,8 @@ export const Hero = ({ data, onContact }: HeroProps) => {
     link.click();
   };
 
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const goToContactPage = () => {
+    navigate('/contact');
   };
 
   return (
@@ -50,7 +49,7 @@ export const Hero = ({ data, onContact }: HeroProps) => {
 
             <div className="flex flex-wrap gap-4 pt-2 animate-slide-in-left animation-delay-500">
               <button
-                onClick={scrollToContact}
+                onClick={goToContactPage}
                 className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
               >
                 Me Contacter
