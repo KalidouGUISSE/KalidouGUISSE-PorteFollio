@@ -1,5 +1,6 @@
 import { PortfolioData } from '../models/PortfolioModel';
 import { Contact } from '../components/Contact';
+import { AnimatedParticles } from '../components/AnimatedParticles';
 
 interface ContactPageProps {
   data: PortfolioData;
@@ -8,7 +9,8 @@ interface ContactPageProps {
 
 export const ContactPage = ({ data, onContact }: ContactPageProps) => {
   return (
-    <div className="bg-gray-50 dark:bg-gray-900/50">
+    <div className="min-h-screen bg-gradient-to-b from-sky-400 via-sky-300 to-sky-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 relative">
+      <AnimatedParticles count={25} />
       <Contact data={data} onContact={onContact} />
     </div>
   );

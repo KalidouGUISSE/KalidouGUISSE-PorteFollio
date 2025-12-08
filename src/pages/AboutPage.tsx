@@ -7,7 +7,7 @@ interface AboutPageProps {
 
 export const AboutPage = ({ data }: AboutPageProps) => {
   return (
-    <div className="bg-red-800 dark:bg-gray-900/50">
+    <div>
       <About data={data} />
     </div>
   );

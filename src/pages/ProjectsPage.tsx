@@ -7,7 +7,7 @@ interface ProjectsPageProps {
 
 export const ProjectsPage = ({ data }: ProjectsPageProps) => {
   return (
-    <div className="bg-gray-50 dark:bg-gray-900/50">
+    <div>
       <Projects data={data} />
     </div>
   );

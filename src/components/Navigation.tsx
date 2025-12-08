@@ -34,9 +34,7 @@ export const Navigation = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20'
-          : isDark
-          ? 'bg-gray-900/80 backdrop-blur-md'
-          : 'bg-white/80 backdrop-blur-md'
+          : 'bg-gradient-to-r from-sky-400/80 via-sky-300/80 to-sky-200/80 dark:from-slate-900/80 dark:via-slate-800/80 dark:to-slate-700/80 backdrop-blur-md'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
@@ -144,9 +142,7 @@ export const Navigation = () => {
           <div className={`md:hidden mt-4 py-4 rounded-lg shadow-lg animate-fade-in ${
             isScrolled
               ? 'bg-white dark:bg-gray-800'
-              : isDark
-              ? 'bg-gray-900/90 backdrop-blur-md'
-              : 'bg-white/90 backdrop-blur-md'
+              : 'bg-gradient-to-b from-sky-400/90 via-sky-300/90 to-sky-200/90 dark:from-slate-900/90 dark:via-slate-800/90 dark:to-slate-700/90 backdrop-blur-md'
           }`}>
             {navItems.map((item) => (
               <Link

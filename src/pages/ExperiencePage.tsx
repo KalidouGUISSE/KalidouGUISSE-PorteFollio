@@ -7,7 +7,7 @@ interface ExperiencePageProps {
 
 export const ExperiencePage = ({ data }: ExperiencePageProps) => {
   return (
-    <div className="bg-gray-50 dark:bg-gray-900/50">
+    <div>
       <Experience data={data} />
     </div>
   );
