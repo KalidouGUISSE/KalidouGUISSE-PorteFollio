@@ -228,26 +228,51 @@ export class PortfolioModel {
       projects: [
         {
           id: 'proj1',
-          title: 'API Bancaire Sécurisée',
-          shortDescription: "API RESTful robuste pour la gestion complète de comptes bancaires avec sécurité avancée et architecture modulaire. Déployée en production avec monitoring temps réel.",
-          achievements: [
-            "Développement d'API RESTful complète avec 15+ endpoints sécurisés",
-            "Implémentation d'authentification JWT avec Laravel Passport & Sanctum",
-            "Intégration de notifications SMS (Twilio) et emails transactionnels",
-            "Architecture modulaire avec séparation claire des responsabilités",
-            "Tests unitaires et d'intégration (PHPUnit) avec couverture >80%",
-            "Déploiement automatisé Docker + Render + PostgreSQL Neon",
-            "Documentation API interactive avec Swagger/OpenAPI"
+          "title": "API de Gestion Bancaire Laravel",
+          "shortDescription": "API RESTful robuste pour système bancaire complet avec authentification multi-niveaux, gestion sécurisée des comptes et transactions financières, déployée en production.",
+          "achievements": [
+            "Développé une API complète avec 25+ endpoints RESTful pour gestion de clients, comptes et transactions",
+            "Implémenté un système d'authentification multi-utilisateur (Admin/Client) avec Laravel Passport et tokens JWT",
+            "Conçu un système de blocage/déblocage automatique des comptes avec jobs programmés et archivage vers base secondaire",
+            "Intégré une documentation interactive Swagger/OpenAPI avec génération automatique des spécifications",
+            "Mis en place des règles de validation personnalisées pour les formats Sénégalais (téléphone +221, NCI 13 chiffres)",
+            "Déployé l'application en production sur Render avec base de données Railway PostgreSQL",
+            "Implémenté un système de logging complet des opérations utilisateur pour traçabilité et audit",
+            "Développé des tests unitaires et fonctionnels couvrant les fonctionnalités critiques"
           ],
-          technologies: {
-            core: ["PHP 8.1", "Laravel 10", "PostgreSQL"],
-            tools: ["Docker", "Git", "Postman", "VS Code"],
-            packages: ["Laravel Passport", "Laravel Sanctum", "Twilio SDK", "PHPUnit", "Swagger"]
+          "technologies": {
+            "core": [
+              "PHP 8.1+",
+              "Laravel 10.x",
+              "PostgreSQL"
+            ],
+            "tools": [
+              "Git",
+              "Composer",
+              "NPM",
+              "Vite",
+              "Docker",
+              "Laravel Sail"
+            ],
+            "packages": [
+              "Laravel Passport",
+              "Laravel Sanctum", 
+              "Swagger-PHP",
+              "Doctrine DBAL",
+              "Laravel Debugbar",
+              "PHPUnit",
+              "Axios"
+            ]
           },
           images: [
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+            "public/assete/projetLaravel/image1.png",
+            "public/assete/projetLaravel/image2.png",
+            "public/assete/projetLaravel/image3.png",
+            "public/assete/projetLaravel/image4.png",
+            "public/assete/projetLaravel/image5.png",
+            // "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+            // "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+            // "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
           ],
           links: {
             github: "https://github.com/KalidouGUISSE/projetlaravel/tree/production",
@@ -256,27 +281,56 @@ export class PortfolioModel {
           }
         },
 
+        // {
+        //   id: 'proj2',
+        //   title: 'Plateforme RH & Gestion des Salaires',
+        //   shortDescription: "Solution complète de gestion RH avec architecture distribuée, authentification avancée et génération automatique de bulletins de salaire. Interface moderne avec tableaux de bord interactifs.",
+        //   achievements: [
+        //     "Développement d'application full-stack avec séparation backend/frontend",
+        //     "Implémentation de système de rôles (Super Admin, Admin, Caissier)",
+        //     "Création de tableaux de bord statistiques avec visualisations dynamiques",
+        //     "Génération automatique de bulletins PDF avec mise en page professionnelle",
+        //     "Authentification JWT sécurisée avec gestion des sessions",
+        //     "Validation des données côté serveur avec Zod",
+        //     "Documentation API automatisée avec Swagger"
+        //   ],
+        //   technologies: {
+        //     core: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+        //     tools: ["Vite", "Prisma", "Git", "VS Code"],
+        //     packages: ["Express", "JWT", "Zod", "TailwindCSS", "React Router"]
+        //   },
+        //   images: [
+        //     "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop",
+        //     "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+        //   ],
+        //   links: {
+        //     backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
+        //     frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
+        //     docs: "https://backend-gestion-salaire.onrender.com/api-docs"
+        //   }
+        // },
+
         {
-          id: 'proj2',
-          title: 'Plateforme RH & Gestion des Salaires',
-          shortDescription: "Solution complète de gestion RH avec architecture distribuée, authentification avancée et génération automatique de bulletins de salaire. Interface moderne avec tableaux de bord interactifs.",
-          achievements: [
-            "Développement d'application full-stack avec séparation backend/frontend",
-            "Implémentation de système de rôles (Super Admin, Admin, Caissier)",
-            "Création de tableaux de bord statistiques avec visualisations dynamiques",
-            "Génération automatique de bulletins PDF avec mise en page professionnelle",
-            "Authentification JWT sécurisée avec gestion des sessions",
-            "Validation des données côté serveur avec Zod",
-            "Documentation API automatisée avec Swagger"
+          "id": "payroll-backend-api",
+          "title": "API Backend - Système de Gestion des Salaires Multi-Entreprises",
+          "shortDescription": "API REST complète développée avec Node.js et TypeScript pour la gestion automatisée des salaires. Elle offre une authentification sécurisée, gestion des employés avec QR codes, cycles de paie automatisés et génération de documents PDF. L'architecture modulaire assure une scalabilité optimale avec tests automatiques et documentation Swagger intégrée.",
+          "achievements": [
+            "Développement d'une API REST robuste avec authentification JWT et autorisation basée sur les rôles (SUPER_ADMIN, ADMIN, CASHIER, EMPLOYEE)",
+            "Implémentation d'un système multi-entreprises avec isolation complète des données et contrôle d'accès granulaire",
+            "Génération automatique de bulletins de salaire et reçus de paiement en PDF avec Puppeteer et PDFKit",
+            "Intégration de QR codes pour validation sécurisée des paiements et suivi automatisé des présences",
+            "Architecture modulaire avec séparation claire des couches (controllers, services, repositories) utilisant Prisma ORM",
+            "Suite de tests complète (unitaires et d'intégration) avec Jest, couvrant plus de 90% du code",
+            "Documentation API interactive complète avec Swagger UI et tests automatiques des endpoints",
+            "Déploiement automatisé avec Docker Compose et configuration Render pour production"
           ],
-          technologies: {
-            core: ["React", "TypeScript", "Node.js", "PostgreSQL"],
-            tools: ["Vite", "Prisma", "Git", "VS Code"],
-            packages: ["Express", "JWT", "Zod", "TailwindCSS", "React Router"]
+          "technologies": {
+            "core": ["Node.js", "TypeScript", "Express.js", "Prisma", "PostgreSQL"],
+            "tools": ["Docker", "Jest", "Swagger", "ESLint", "Prettier"],
+            "packages": ["bcrypt", "jsonwebtoken", "multer", "qrcode", "pdfkit", "puppeteer", "nodemailer", "zod"]
           },
-          images: [
-            "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+          "images": [
+            "public/assete/apiGestionPaie/image.png",
           ],
           links: {
             backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
@@ -285,6 +339,38 @@ export class PortfolioModel {
           }
         },
 
+        {
+          "id": "payroll-frontend-app",
+          "title": "Interface Frontend - Application de Gestion des Salaires",
+          "shortDescription": "Interface utilisateur moderne développée avec React 19 et TypeScript pour la gestion complète des salaires. Elle propose une expérience fluide avec tableaux interactifs, graphiques analytiques, scan QR en temps réel et exports PDF/CSV. L'application est optimisée pour les performances avec lazy loading et cache intelligent. Et consome API Backend - Système de Gestion des Salaires Multi-Entreprises",
+          "achievements": [
+            "Développement d'une interface utilisateur moderne et accessible avec React 19, TypeScript et Tailwind CSS",
+            "Implémentation de tableaux avancés avec TanStack Table offrant tri, filtrage, pagination et recherche en temps réel",
+            "Intégration de graphiques interactifs avec Recharts pour l'analyse des KPIs et évolution des paiements",
+            "Gestion optimisée des requêtes API avec React Query et cache intelligent réduisant les appels serveur de 60%",
+            "Interface accessible respectant les standards WCAG avec navigation clavier et sémantique HTML",
+            "Fonctionnalités d'export intégrées (CSV pour données, PDF pour documents) avec génération côté client",
+            "Scan QR en temps réel pour le suivi des présences utilisant html5-qrcode",
+            "Architecture modulaire respectant SOLID/DRY avec séparation claire des responsabilités (API, composants, stores)"
+          ],
+          "technologies": {
+            "core": ["React", "TypeScript", "Vite", "Tailwind CSS"],
+            "tools": ["ESLint", "Vite", "shadcn/ui", "Lucide Icons"],
+            "packages": ["React Query", "Zustand", "TanStack Table", "Recharts", "Axios", "Zod", "React Hook Form", "React Router"]
+          },
+          "images": [
+            "public/assete/apiGestionSalaire/image.png",
+            "public/assete/apiGestionSalaire/image1.png",
+            "public/assete/apiGestionSalaire/image2.png",
+            "public/assete/apiGestionSalaire/image3.png",
+            "public/assete/apiGestionSalaire/image4.png",
+            "public/assete/apiGestionSalaire/image5.png",
+          ],
+          links: {
+            backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
+            frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
+          }
+        },
         {
           id: 'proj3',
           title: 'Système de Gestion de Cargaisons',
@@ -303,10 +389,10 @@ export class PortfolioModel {
             tools: ["Git", "VS Code", "Postman"],
             packages: ["Express", "TailwindCSS", "Socket.io", "Joi"]
           },
-          images: [
-            "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop"
-          ],
+          // images: [
+          //   "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
+          //   "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop"
+          // ],
           links: {
             github: "https://github.com/KalidouGUISSE/gestionCargaisonV"
           }
@@ -330,11 +416,11 @@ export class PortfolioModel {
             tools: ["Git", "XAMPP", "VS Code"],
             packages: ["MVC Framework", "PDO", "Bootstrap"]
           },
-          images: [
-            "public/assete/image1 copy.png",
-            "public/assete/image1.png",
-            "public/assete/image2.png"
-          ],
+          // images: [
+          //   "public/assete/image1 copy.png",
+          //   "public/assete/image1.png",
+          //   "public/assete/image2.png"
+          // ],
           links: {
             github: "https://github.com/yourusername/odc-student-management"
           }
