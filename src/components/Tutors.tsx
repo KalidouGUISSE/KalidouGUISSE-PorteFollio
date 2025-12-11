@@ -1,4 +1,4 @@
-import { PortfolioData } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 import { Users, Award, Mail, Phone, Linkedin } from 'lucide-react';
 
 interface TutorsProps {

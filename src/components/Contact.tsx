@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PortfolioData } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 import { Send, Mail, Phone, MapPin, Linkedin, MessageCircle, AlertCircle } from 'lucide-react';
 
 interface ContactProps {

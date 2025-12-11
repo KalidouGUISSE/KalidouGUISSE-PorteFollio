@@ -1,4 +1,4 @@
-import { PortfolioData } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 import { Tutors } from '../components/Tutors';
 
 interface TutorsPageProps {

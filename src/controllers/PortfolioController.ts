@@ -1,4 +1,5 @@
-import { PortfolioModel, PortfolioData } from '../models/PortfolioModel';
+import { PortfolioModel } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 
 export interface ContactStrategy {
   handle(value: string): void;

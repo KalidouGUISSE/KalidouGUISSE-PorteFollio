@@ -1,4 +1,4 @@
-import { PortfolioData } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 import { Code2, Database, Smartphone, Layers, Globe, Languages } from 'lucide-react';
 
 interface SkillsProps {

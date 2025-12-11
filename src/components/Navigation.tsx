@@ -26,6 +26,7 @@ export const Navigation = () => {
     { path: '/skills', label: 'Compétences' },
     { path: '/experience', label: 'Parcours' },
     { path: '/tutors', label: 'Tuteurs' },
+    // { path: '/blog', label: 'Blog' },
     { path: '/contact', label: 'Contact' },
   ];
 

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { PortfolioData } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 import { Phone, Mail, MapPin, Linkedin, MessageCircle, Download, ArrowRight, Sparkles } from 'lucide-react';
 
 interface HeroProps {
@@ -13,7 +13,7 @@ export const Hero = ({ data, onContact }: HeroProps) => {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/cv-kalidou-guisse.pdf';
+    link.href = '/cv/Jooble_CV-1.pdf-1.pdf';
     link.download = 'CV-Kalidou-GUISSE.pdf';
     link.click();
   };

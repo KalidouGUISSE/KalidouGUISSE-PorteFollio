@@ -1,31 +1,30 @@
 import { useState, useEffect } from 'react';
-import { PortfolioData } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 import { Github, BookOpen, ExternalLink, Image as ImageIcon, ChevronLeft, ChevronRight, Pause, Play, X } from 'lucide-react';
 
 interface ProjectsProps {
   data: PortfolioData;
 }
 
-interface ImageCarouselProps {
-  images: string[];
-  projectTitle: string;
+interface VideoCarouselProps {
+  videos: string[];
 }
 
-const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
+const VideoCarousel = ({ videos }: VideoCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [zoomedVideo, setZoomedVideo] = useState<string | null>(null);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === videos.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? videos.length - 1 : prevIndex - 1
     );
   };
 
@@ -35,7 +34,7 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
 
   // Autoplay functionality
   useEffect(() => {
-    if (images.length <= 1 || !isAutoPlaying) {
+    if (videos.length <= 1 || !isAutoPlaying) {
       setProgress(0);
       return;
     }
@@ -45,11 +44,11 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
     }, 4000); // Change slide every 4 seconds
 
     return () => clearInterval(interval);
-  }, [currentIndex, isAutoPlaying, images.length]);
+  }, [currentIndex, isAutoPlaying, videos.length]);
 
   // Progress bar animation
   useEffect(() => {
-    if (images.length <= 1 || !isAutoPlaying) {
+    if (videos.length <= 1 || !isAutoPlaying) {
       setProgress(0);
       return;
     }
@@ -62,18 +61,18 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
     }, 100);
 
     return () => clearInterval(progressInterval);
-  }, [currentIndex, isAutoPlaying, images.length]);
+  }, [currentIndex, isAutoPlaying, videos.length]);
 
-  if (images.length === 0) return null;
+  if (videos.length === 0) return null;
 
   return (
     <div className="relative">
       <div className="flex items-center justify-between mb-4">
         <h4 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
           <ImageIcon size={20} />
-          Aperçu ({images.length} image{images.length > 1 ? 's' : ''})
+          Aperçu ({videos.length} vidéo{videos.length > 1 ? 's' : ''})
         </h4>
-        {images.length > 1 && (
+        {videos.length > 1 && (
           <button
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
             className="flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full text-sm font-medium transition-colors"
@@ -95,20 +94,25 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
           className="flex transition-transform duration-500 ease-in-out h-full"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {images.map((image, index) => (
+          {videos.map((video, index) => (
             <div key={index} className="w-full flex-shrink-0">
-              <img
-                src={image}
-                alt={`${projectTitle} - Aperçu ${index + 1}`}
+              <video
+                src={video}
+                autoPlay
+                muted
+                loop
+                playsInline
                 className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => setZoomedImage(image)}
-              />
+                onClick={() => setZoomedVideo(video)}
+              >
+                Votre navigateur ne supporte pas la lecture de vidéos.
+              </video>
             </div>
           ))}
         </div>
 
         {/* Contrôles de navigation */}
-        {images.length > 1 && (
+        {videos.length > 1 && (
           <>
             {/* Boutons précédent/suivant */}
             <button
@@ -128,7 +132,7 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
 
             {/* Indicateurs */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {images.map((_, index) => (
+              {videos.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
@@ -143,7 +147,7 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
             </div>
 
             {/* Barre de progression */}
-            {images.length > 1 && isAutoPlaying && (
+            {videos.length > 1 && isAutoPlaying && (
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
                 <div
                   className="h-full bg-blue-500 transition-all duration-100 ease-linear"
@@ -154,27 +158,33 @@ const ImageCarousel = ({ images, projectTitle }: ImageCarouselProps) => {
           </>
         )}
 
-        {/* Compteur d'images */}
+        {/* Compteur de vidéos */}
         <div className="absolute top-2 right-2 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
-          {currentIndex + 1} / {images.length}
+          {currentIndex + 1} / {videos.length}
         </div>
       </div>
 
       {/* Modal de zoom */}
-      {zoomedImage && (
+      {zoomedVideo && (
         <div
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={() => setZoomedImage(null)}
+          onClick={() => setZoomedVideo(null)}
         >
           <div className="relative max-w-4xl max-h-full">
-            <img
-              src={zoomedImage}
-              alt={`${projectTitle} - Zoom`}
+            <video
+              src={zoomedVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
               className="max-w-full max-h-full object-contain"
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
             <button
-              onClick={() => setZoomedImage(null)}
+              onClick={() => setZoomedVideo(null)}
               className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
               aria-label="Fermer le zoom"
             >
@@ -357,9 +367,9 @@ export const Projects = ({ data }: ProjectsProps) => {
                       </div>
                     </div>
 
-                    {/* Images (optionnel) */}
-                    {project.images && project.images.length > 0 && (
-                      <ImageCarousel images={project.images} projectTitle={project.title} />
+                    {/* Vidéos (optionnel) */}
+                    {project.videos && project.videos.length > 0 && (
+                      <VideoCarousel videos={project.videos} />
                     )}
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { PortfolioData } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 import { Briefcase, GraduationCap } from 'lucide-react';
 
 interface ExperienceProps {

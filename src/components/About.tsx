@@ -1,4 +1,4 @@
-import { PortfolioData } from '../models/PortfolioModel';
+import { PortfolioData } from '../types/portfolio';
 import { Code2, Zap, Users, Award } from 'lucide-react';
 
 interface AboutProps {

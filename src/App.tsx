@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PortfolioController } from './controllers/PortfolioController';
-import { PortfolioData } from './models/PortfolioModel';
+import { PortfolioData } from './types/portfolio';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Layout } from './components/Layout';
 import { HomePage } from './pages/HomePage';
@@ -10,6 +10,7 @@ import { ProjectsPage } from './pages/ProjectsPage';
 import { SkillsPage } from './pages/SkillsPage';
 import { ExperiencePage } from './pages/ExperiencePage';
 import { TutorsPage } from './pages/TutorsPage';
+import { BlogPage } from './pages/BlogPage';
 import { ContactPage } from './pages/ContactPage';
 
 function AppContent() {
@@ -53,6 +54,7 @@ function AppContent() {
           <Route path="/skills" element={<SkillsPage data={portfolioData} />} />
           <Route path="/experience" element={<ExperiencePage data={portfolioData} />} />
           <Route path="/tutors" element={<TutorsPage data={portfolioData} />} />
+          <Route path="/blog" element={<BlogPage data={portfolioData} />} />
           <Route path="/contact" element={<ContactPage data={portfolioData} onContact={handleContact} />} />
         </Routes>
       </Layout>
