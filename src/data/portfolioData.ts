@@ -204,10 +204,13 @@ export const getInitialPortfolioData = (): PortfolioData => {
           tools: ["ESLint", "Vite", "shadcn/ui", "Lucide Icons"],
           packages: ["React Query", "Zustand", "TanStack Table", "Recharts", "Axios", "Zod", "React Hook Form", "React Router"]
         },
+        videos: [
+          "public/assete/frontGestionsalaire/video.mp4"
+        ],
         links: {
           backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
           frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
-          demo: "https://frontend-gestion-salaire.vercel.app"
+          // demo: "https://frontend-gestion-salaire.vercel.app"
         }
       },
       {
@@ -236,96 +239,96 @@ export const getInitialPortfolioData = (): PortfolioData => {
           github: "https://github.com/KalidouGUISSE/gestionCargaisonV-"
         }
       },
-      {
-        id: 'proj4',
-        title: 'Gestion des Apprenants ODC',
-        shortDescription: "Plateforme académique complète pour la gestion d'un centre de formation avec automatisation administrative et suivi pédagogique détaillé.",
-        achievements: [
-          "Développement from-scratch avec architecture SOLID + MVC",
-          "Système complet de gestion des apprenants et promotions",
-          "Suivi des absences, notes et filières académiques",
-          "Automatisation des tâches administratives répétitives",
-          "Interface intuitive pour enseignants et administrateurs",
-          "Génération automatique de rapports et statistiques",
-          "Sécurité avancée avec gestion des rôles et permissions"
-        ],
-        technologies: {
-          core: ["PHP", "MySQL", "HTML/CSS"],
-          tools: ["Git", "XAMPP", "VS Code"],
-          packages: ["MVC Framework", "PDO", "Bootstrap"]
-        },
-        links: {
-          github: "https://github.com/yourusername/odc-student-management"
-        }
-      },
-      {
-        id: 'proj5',
-        title: 'Gestion de Pharmacie',
-        shortDescription: "Solution complète d'automatisation pour pharmacies avec gestion intelligente des stocks et système d'alertes prédictives.",
-        achievements: [
-          "Développement d'application web full-stack Laravel",
-          "Système de gestion automatisée des stocks et inventaires",
-          "Implémentation d'alertes pour produits en rupture ou périmés",
-          "Plateforme d'échange B2B entre pharmacies",
-          "Interface client pour consultation de disponibilité",
-          "Génération automatique de rapports de vente",
-          "Optimisation des performances pour gros volumes de données"
-        ],
-        technologies: {
-          core: ["PHP", "Laravel", "MySQL"],
-          tools: ["Composer", "Git", "VS Code"],
-          packages: ["Laravel Framework", "Eloquent ORM", "Blade Templates"]
-        },
-        links: {
-          github: "https://github.com/yourusername/pharmacy-management"
-        }
-      },
-      {
-        id: 'proj6',
-        title: 'MaxitSA – Application de Transfert d\'Argent',
-        shortDescription: "Application de transfert d'argent avec architecture propre et suivi temps réel des transactions financières.",
-        achievements: [
-          "Architecture Repository-Service-Controller propre",
-          "Développement d'API REST complète pour transferts",
-          "Gestion sécurisée des comptes utilisateurs et transactions",
-          "Suivi temps réel avec notifications push",
-          "Intégration de stockage cloud pour données sensibles",
-          "Dockerisation complète pour déploiement scalable",
-          "Tests automatisés et monitoring de performance"
-        ],
-        technologies: {
-          core: ["PHP", "JavaScript", "MySQL"],
-          tools: ["Docker", "Git", "Jenkins"],
-          packages: ["Laravel", "Socket.io", "AWS SDK", "PHPUnit"]
-        },
-        links: {
-          github: "https://github.com/yourusername/maxitsa",
-          demo: "https://maxitsa-demo.onrender.com"
-        }
-      },
-      {
-        id: 'proj7',
-        title: 'Clone WhatsApp',
-        shortDescription: "Application de messagerie web moderne inspirée de WhatsApp avec interface responsive et fonctionnalités temps réel.",
-        achievements: [
-          "Développement d'interface utilisateur moderne et responsive",
-          "Implémentation de système de messagerie temps réel",
-          "Gestion avancée des conversations et contacts",
-          "Système de notifications push pour nouveaux messages",
-          "Optimisation des performances pour mobile et desktop",
-          "Interface intuitive avec animations fluides",
-          "Support multi-navigateurs et compatibilité cross-platform"
-        ],
-        technologies: {
-          core: ["JavaScript", "HTML5", "CSS3"],
-          tools: ["Git", "VS Code", "Chrome DevTools"],
-          packages: ["Socket.io", "LocalStorage API", "Web Notifications API"]
-        },
-        links: {
-          github: "https://github.com/yourusername/whatsapp-clone",
-          demo: "https://whatsapp-clone-demo.netlify.app"
-        }
-      }
+      // {
+      //   id: 'proj4',
+      //   title: 'Gestion des Apprenants ODC',
+      //   shortDescription: "Plateforme académique complète pour la gestion d'un centre de formation avec automatisation administrative et suivi pédagogique détaillé.",
+      //   achievements: [
+      //     "Développement from-scratch avec architecture SOLID + MVC",
+      //     "Système complet de gestion des apprenants et promotions",
+      //     "Suivi des absences, notes et filières académiques",
+      //     "Automatisation des tâches administratives répétitives",
+      //     "Interface intuitive pour enseignants et administrateurs",
+      //     "Génération automatique de rapports et statistiques",
+      //     "Sécurité avancée avec gestion des rôles et permissions"
+      //   ],
+      //   technologies: {
+      //     core: ["PHP", "MySQL", "HTML/CSS"],
+      //     tools: ["Git", "XAMPP", "VS Code"],
+      //     packages: ["MVC Framework", "PDO", "Bootstrap"]
+      //   },
+      //   links: {
+      //     github: "https://github.com/yourusername/odc-student-management"
+      //   }
+      // },
+      // {
+      //   id: 'proj5',
+      //   title: 'Gestion de Pharmacie',
+      //   shortDescription: "Solution complète d'automatisation pour pharmacies avec gestion intelligente des stocks et système d'alertes prédictives.",
+      //   achievements: [
+      //     "Développement d'application web full-stack Laravel",
+      //     "Système de gestion automatisée des stocks et inventaires",
+      //     "Implémentation d'alertes pour produits en rupture ou périmés",
+      //     "Plateforme d'échange B2B entre pharmacies",
+      //     "Interface client pour consultation de disponibilité",
+      //     "Génération automatique de rapports de vente",
+      //     "Optimisation des performances pour gros volumes de données"
+      //   ],
+      //   technologies: {
+      //     core: ["PHP", "Laravel", "MySQL"],
+      //     tools: ["Composer", "Git", "VS Code"],
+      //     packages: ["Laravel Framework", "Eloquent ORM", "Blade Templates"]
+      //   },
+      //   links: {
+      //     github: "https://github.com/yourusername/pharmacy-management"
+      //   }
+      // },
+      // {
+      //   id: 'proj6',
+      //   title: 'MaxitSA – Application de Transfert d\'Argent',
+      //   shortDescription: "Application de transfert d'argent avec architecture propre et suivi temps réel des transactions financières.",
+      //   achievements: [
+      //     "Architecture Repository-Service-Controller propre",
+      //     "Développement d'API REST complète pour transferts",
+      //     "Gestion sécurisée des comptes utilisateurs et transactions",
+      //     "Suivi temps réel avec notifications push",
+      //     "Intégration de stockage cloud pour données sensibles",
+      //     "Dockerisation complète pour déploiement scalable",
+      //     "Tests automatisés et monitoring de performance"
+      //   ],
+      //   technologies: {
+      //     core: ["PHP", "JavaScript", "MySQL"],
+      //     tools: ["Docker", "Git", "Jenkins"],
+      //     packages: ["Laravel", "Socket.io", "AWS SDK", "PHPUnit"]
+      //   },
+      //   links: {
+      //     github: "https://github.com/yourusername/maxitsa",
+      //     demo: "https://maxitsa-demo.onrender.com"
+      //   }
+      // },
+      // {
+      //   id: 'proj7',
+      //   title: 'Clone WhatsApp',
+      //   shortDescription: "Application de messagerie web moderne inspirée de WhatsApp avec interface responsive et fonctionnalités temps réel.",
+      //   achievements: [
+      //     "Développement d'interface utilisateur moderne et responsive",
+      //     "Implémentation de système de messagerie temps réel",
+      //     "Gestion avancée des conversations et contacts",
+      //     "Système de notifications push pour nouveaux messages",
+      //     "Optimisation des performances pour mobile et desktop",
+      //     "Interface intuitive avec animations fluides",
+      //     "Support multi-navigateurs et compatibilité cross-platform"
+      //   ],
+      //   technologies: {
+      //     core: ["JavaScript", "HTML5", "CSS3"],
+      //     tools: ["Git", "VS Code", "Chrome DevTools"],
+      //     packages: ["Socket.io", "LocalStorage API", "Web Notifications API"]
+      //   },
+      //   links: {
+      //     github: "https://github.com/yourusername/whatsapp-clone",
+      //     demo: "https://whatsapp-clone-demo.netlify.app"
+      //   }
+      // }
     ],
     tutors: [
       {
