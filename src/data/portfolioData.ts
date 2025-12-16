@@ -151,7 +151,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
           ]
         },
         videos:[
-          "public/assete/projetLaravel/laravel.mp4"
+          "/assete/projetLaravel/laravel.mp4"
         ],
         links: {
           github: "https://github.com/KalidouGUISSE/projetlaravel/tree/production",
@@ -177,7 +177,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
           packages: ["bcrypt", "jsonwebtoken", "multer", "qrcode", "pdfkit", "puppeteer", "nodemailer", "zod"]
         },
         videos: [
-          "public/assete/api salaire/video.mp4"
+          "/assete/api salaire/video.mp4"
         ],
         links: {
           frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
@@ -205,7 +205,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
           packages: ["React Query", "Zustand", "TanStack Table", "Recharts", "Axios", "Zod", "React Hook Form", "React Router"]
         },
         videos: [
-          "public/assete/frontGestionsalaire/video.mp4"
+          "/assete/frontGestionsalaire/video.mp4"
         ],
         links: {
           backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
@@ -233,7 +233,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
           packages: ["Dotenv", "Composer", "TypeScript compiler", "ESLint"]
         },
         videos: [
-          "public/assete/cargaison/video.mp4"
+          "/assete/cargaison/video.mp4"
         ],
         links: {
           github: "https://github.com/KalidouGUISSE/gestionCargaisonV-"
