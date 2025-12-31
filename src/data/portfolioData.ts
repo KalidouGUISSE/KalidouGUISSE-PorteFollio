@@ -158,6 +158,35 @@ export const getInitialPortfolioData = (): PortfolioData => {
           // docs: "https://kalidou-guisse-projetlaravel.onrender.com/api/documentation",
         }
       },
+            {
+        id: 'proj4',
+        title: 'OM Pay – Application de Paiement Mobile Full-Stack',
+        shortDescription: "Conception et développement end-to-end d’une application de paiement mobile sécurisée destinée au marché sénégalais, intégrant authentification OTP, transactions financières et application mobile native.",
+        achievements: [
+          "Développement from-scratch avec architecture SOLID + MVC",
+          "Système complet de gestion des apprenants et promotions",
+          "Suivi des absences, notes et filières académiques",
+          "Automatisation des tâches administratives répétitives",
+          "Interface intuitive pour enseignants et administrateurs",
+          "Génération automatique de rapports et statistiques",
+          "Sécurité avancée avec gestion des rôles et permissions"
+        ],
+        technologies: {
+          core: ["Flutter", "Dart", "Provider", "SharedPreferences", "HTTP"],
+          tools: ["Git", "Docker", "Railway / Render"],
+          packages: [""]
+        },
+
+        videos : [
+          "/assete/ompay/ompay.mp4",
+        ],
+        links: {
+          backend: "https://github.com/KalidouGUISSE/OM-Pay-Backend",
+          frontend: "https://github.com/KalidouGUISSE/OM-Pay-Fluter",
+          // demo: "https://frontend-gestion-salaire.vercel.app"
+        }
+        
+      },
       {
         id: "p2",
         title: "API - Système de Gestion des Salaires Multi-Entreprises",
@@ -239,6 +268,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
           github: "https://github.com/KalidouGUISSE/gestionCargaisonV-"
         }
       },
+
       // {
       //   id: 'proj4',
       //   title: 'Gestion des Apprenants ODC',
