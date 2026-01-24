@@ -17,7 +17,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
     experiences: [
       {
         id: 'exp1',
-        title: 'Formation École du Code SONATEL Aquademie',
+        title: 'Formation École du Code SONATEL ACADEMY',
         period: '2025',
         description: 'Formation avancée en développement logiciel',
         type: 'training'
