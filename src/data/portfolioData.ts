@@ -158,7 +158,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
           // docs: "https://kalidou-guisse-projetlaravel.onrender.com/api/documentation",
         }
       },
-            {
+      {
         id: 'proj4',
         title: 'OM Pay – Application de Paiement Mobile Full-Stack',
         shortDescription: "Conception et développement end-to-end d’une application de paiement mobile sécurisée destinée au marché sénégalais, intégrant authentification OTP, transactions financières et application mobile native.",
@@ -181,9 +181,9 @@ export const getInitialPortfolioData = (): PortfolioData => {
           "/assete/ompay/ompay.mp4",
         ],
         links: {
-          backend: "https://github.com/KalidouGUISSE/OM-Pay-Backend",
+          // backend: "https://github.com/KalidouGUISSE/OM-Pay",
           frontend: "https://github.com/KalidouGUISSE/OM-Pay-Fluter",
-          // demo: "https://frontend-gestion-salaire.vercel.app"
+          docs: "https://om-pay.onrender.com/api/documentation"
         }
         
       },

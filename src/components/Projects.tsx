@@ -1,17 +1,41 @@
 import { useState, useMemo, useEffect } from 'react';
 import { PortfolioData } from '../types/portfolio';
-import { 
-  Github, ExternalLink, Code2, Layers, Terminal, 
-  ChevronDown, ChevronUp, Search, Filter, X,
-  Database, Smartphone, Globe, Cpu
+import {
+  Github, ExternalLink, Code2, Layers, Terminal,
+  ChevronDown, ChevronUp, SlidersHorizontal, Filter,
+  Database, Smartphone, Globe, Server
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { TechnologyFilter } from './TechnologyFilter';
 
 interface ProjectsProps {
   data: PortfolioData;
 }
 
 type ViewMode = 'grid' | 'list' | 'mobile-accordion';
+
+// Catégories de technologies avec icônes
+const TECH_CATEGORIES = [
+  { name: 'Frontend', icon: <Globe size={14} />, color: 'blue' },
+  { name: 'Backend', icon: <Server size={14} />, color: 'green' },
+  { name: 'Mobile', icon: <Smartphone size={14} />, color: 'purple' },
+  { name: 'Database', icon: <Database size={14} />, color: 'orange' },
+  { name: 'Tools', icon: <SlidersHorizontal size={14} />, color: 'gray' },
+];
+
+// Fonction pour catégoriser une technologie
+const getTechCategory = (tech: string): string => {
+  const frontend = ['React', 'Angular', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'Tailwind CSS'];
+  const backend = ['PHP', 'Laravel', 'Node', 'Java', 'Python', 'C'];
+  const mobile = ['Flutter', 'Dart'];
+  const database = ['MySQL', 'MongoDB', 'PostgreSQL'];
+  
+  if (frontend.includes(tech)) return 'Frontend';
+  if (backend.includes(tech)) return 'Backend';
+  if (mobile.includes(tech)) return 'Mobile';
+  if (database.includes(tech)) return 'Database';
+  return 'Tools';
+};
 
 // Composant: MobileAccordionItem
 const MobileAccordionItem = ({ 
@@ -41,7 +65,6 @@ const MobileAccordionItem = ({
         }
       `}
     >
-      {/* Header cliquable */}
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
@@ -79,7 +102,6 @@ const MobileAccordionItem = ({
         />
       </button>
 
-      {/* Contenu développé */}
       <div
         id={`project-content-${project.id}`}
         className={`
@@ -91,7 +113,6 @@ const MobileAccordionItem = ({
           px-4 pb-4 space-y-4
           ${isDark ? 'border-t border-gray-700' : 'border-t border-gray-200'}
         `}>
-          {/* Description */}
           <p className={`
             pt-4 text-sm leading-relaxed
             ${isDark ? 'text-gray-300' : 'text-gray-600'}
@@ -99,7 +120,6 @@ const MobileAccordionItem = ({
             {project.shortDescription}
           </p>
 
-          {/* Réalisations */}
           <div>
             <h4 className={`
               text-xs font-semibold uppercase tracking-wider mb-2
@@ -126,7 +146,6 @@ const MobileAccordionItem = ({
             </ul>
           </div>
 
-          {/* Technologies */}
           <div>
             <h4 className={`
               text-xs font-semibold uppercase tracking-wider mb-2
@@ -152,7 +171,6 @@ const MobileAccordionItem = ({
             </div>
           </div>
 
-          {/* Liens */}
           <div className={`
             pt-2 flex flex-wrap gap-2
           `}>
@@ -214,7 +232,7 @@ const MobileAccordionItem = ({
   );
 };
 
-// Composant: ProjectCard (Desktop Grid)
+// Composant: ProjectCard
 const ProjectCard = ({ 
   project, 
   isDark 
@@ -240,7 +258,6 @@ const ProjectCard = ({
       `}
       aria-labelledby={`project-title-${project.id}`}
     >
-      {/* Header */}
       <div className={`
         px-6 py-4 rounded-t-xl border-b transition-colors duration-300
         ${isDark 
@@ -272,7 +289,6 @@ const ProjectCard = ({
         </div>
       </div>
 
-      {/* Contenu */}
       <div className="flex-1 p-6 space-y-4">
         <p className={`
           text-sm leading-relaxed line-clamp-3
@@ -281,7 +297,6 @@ const ProjectCard = ({
           {project.shortDescription}
         </p>
 
-        {/* Réalisations */}
         <div className="space-y-2">
           <h4 className={`
             text-xs font-semibold uppercase tracking-wider
@@ -316,7 +331,6 @@ const ProjectCard = ({
           </ul>
         </div>
 
-        {/* Technologies */}
         <div className="space-y-2">
           <h4 className={`
             text-xs font-semibold uppercase tracking-wider
@@ -351,7 +365,6 @@ const ProjectCard = ({
         </div>
       </div>
 
-      {/* Liens */}
       <div className={`
         px-6 py-4 rounded-b-xl border-t flex items-center justify-between gap-4
         ${isDark 
@@ -426,105 +439,54 @@ const ProjectCard = ({
   );
 };
 
-// Composant: FilterSection
-const FilterSection = ({ 
-  allTechnologies, 
-  selectedTechs, 
-  onToggleTech,
-  isDark
-}: {
-  allTechnologies: string[];
-  selectedTechs: string[];
-  onToggleTech: (tech: string) => void;
-  isDark: boolean;
-}) => {
-  const categoryIcons: Record<string, React.ReactNode> = {
-    'PHP': <Cpu size={14} />,
-    'Laravel': <Layers size={14} />,
-    'Node': <Cpu size={14} />,
-    'React': <Globe size={14} />,
-    'Flutter': <Smartphone size={14} />,
-    'MySQL': <Database size={14} />,
-    'PostgreSQL': <Database size={14} />,
-  };
-
-  return (
-    <div className="flex flex-wrap gap-2">
-      {allTechnologies.map((tech) => {
-        const isSelected = selectedTechs.includes(tech);
-        return (
-          <button
-            key={tech}
-            onClick={() => onToggleTech(tech)}
-            aria-pressed={isSelected}
-            className={`
-              flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
-              transition-all duration-200
-              ${isSelected
-                ? isDark 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-blue-600 text-white'
-                : isDark 
-                  ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' 
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }
-            `}
-          >
-            {categoryIcons[tech] || <Code2 size={14} />}
-            {tech}
-            {isSelected && (
-              <X size={12} className="ml-0.5" />
-            )}
-          </button>
-        );
-      })}
-    </div>
-  );
-};
-
 export const Projects = ({ data }: ProjectsProps) => {
   const { isDark } = useTheme();
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
   const [openAccordionId, setOpenAccordionId] = useState<string | null>(null);
+  const [isFilterVisible, setIsFilterVisible] = useState(true);
 
-  // Détecter la taille d'écran pour définir le mode par défaut
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setViewMode('mobile-accordion');
       }
     };
-    
-    // Initialiser en mobile si petit écran
     handleResize();
-    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Extraire toutes les technologies uniques
-  const allTechnologies = useMemo(() => {
-    const techs = new Set<string>();
+  // Extraire technologies avec catégories
+  const techCategories = useMemo(() => {
+    const categories: Record<string, string[]> = {};
+    
     data.projects.forEach(project => {
-      project.technologies.core.forEach(t => techs.add(t));
-      project.technologies.tools.forEach(t => techs.add(t));
-      project.technologies.packages.forEach(t => t && techs.add(t));
+      [...project.technologies.core, ...project.technologies.tools].forEach(t => {
+        const cat = getTechCategory(t);
+        if (!categories[cat]) categories[cat] = [];
+        if (!categories[cat].includes(t)) categories[cat].push(t);
+      });
     });
-    return Array.from(techs).sort();
+    
+    return Object.entries(categories).map(([name, items]) => ({
+      name,
+      items: items.sort(),
+      icon: TECH_CATEGORIES.find(c => c.name === name)?.icon || <Code2 size={14} />,
+      color: TECH_CATEGORIES.find(c => c.name === name)?.color || 'gray'
+    }));
   }, [data.projects]);
 
   // Filtrer les projets
   const filteredProjects = useMemo(() => {
     return data.projects.filter(project => {
-      // Recherche textuelle
       const matchesSearch = 
+        searchQuery === '' ||
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.shortDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.achievements.some(a => a.toLowerCase().includes(searchQuery.toLowerCase()));
 
-      // Filtrage par technologies (OU - un projet apparaît s'il contient AU MOINS une tech sélectionnée)
       const matchesTechs = selectedTechs.length === 0 || selectedTechs.some(tech => 
         project.technologies.core.includes(tech) ||
         project.technologies.tools.includes(tech) ||
@@ -558,7 +520,6 @@ export const Projects = ({ data }: ProjectsProps) => {
       id="projects"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div className="animate-fade-in-up">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -570,7 +531,6 @@ export const Projects = ({ data }: ProjectsProps) => {
             </p>
           </div>
 
-          {/* View Mode Toggle */}
           <div className="flex items-center gap-2 p-1 rounded-lg bg-gray-100 dark:bg-gray-800 animate-fade-in-up animation-delay-200">
             <button
               onClick={() => setViewMode('grid')}
@@ -617,72 +577,55 @@ export const Projects = ({ data }: ProjectsProps) => {
           </div>
         </div>
 
-        {/* Search & Filters */}
-        <div className={`
-          mb-8 p-4 rounded-xl border space-y-4
-          ${isDark 
-            ? 'bg-gray-800/30 border-gray-700' 
-            : 'bg-gray-50 border-gray-200'
-          }
-        `}>
-          {/* Search Bar */}
-          <div className="relative">
-            <Search 
-              size={18}
-              className={`
-                absolute left-3 top-1/2 -translate-y-1/2
-                ${isDark ? 'text-gray-400' : 'text-gray-500'}
-              `}
-            />
-            <input
-              type="text"
-              placeholder="Rechercher un projet..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`
-                w-full pl-10 pr-4 py-2.5 rounded-lg border
-                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                ${isDark 
-                  ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                  : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                }
-              `}
-              aria-label="Rechercher un projet"
-            />
-          </div>
-
-          {/* Tech Filters */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className={`
-                text-sm font-medium flex items-center gap-2
-                ${isDark ? 'text-gray-300' : 'text-gray-700'}
-              `}>
-                <Filter size={14} />
-                Filtrer par technologie
+        {/* Filter Toggle Button */}
+        <div className="mb-4">
+          <button
+            onClick={() => setIsFilterVisible(!isFilterVisible)}
+            className={ `
+              flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+              transition-all duration-200
+              ${isDark
+                ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
+              }
+            `}
+            aria-expanded={isFilterVisible}
+            aria-controls="filter-section"
+          >
+            <Filter size={16} className={selectedTechs.length > 0 ? 'text-blue-500' : ''} />
+            <span>Filtres</span>
+            {selectedTechs.length > 0 && (
+              <span className="px-2 py-0.5 text-xs bg-blue-500 text-white rounded-full">
+                {selectedTechs.length}
               </span>
-              {(searchQuery || selectedTechs.length > 0) && (
-                <button
-                  onClick={handleResetFilters}
-                  className={`
-                    text-xs font-medium px-2 py-1 rounded
-                    ${isDark 
-                      ? 'text-gray-400 hover:text-white' 
-                      : 'text-gray-500 hover:text-gray-700'
-                    }
-                  `}
-                >
-                  Réinitialiser
-                </button>
-              )}
-            </div>
-            <FilterSection
-              allTechnologies={allTechnologies}
-              selectedTechs={selectedTechs}
-              onToggleTech={handleToggleTech}
-              isDark={isDark}
+            )}
+            <ChevronDown
+              size={16}
+              className={`
+                transition-transform duration-200
+                ${isFilterVisible ? 'rotate-180' : ''}
+              `}
             />
-          </div>
+          </button>
+        </div>
+
+        {/* Search & Filters */}
+        <div
+          id="filter-section"
+          className={`
+            overflow-hidden transition-all duration-300 ease-in-out
+            ${isFilterVisible ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}
+          `}
+        >
+          <TechnologyFilter
+            techCategories={techCategories}
+            selectedTechs={selectedTechs}
+            searchQuery={searchQuery}
+            isDark={isDark}
+            onToggleTech={handleToggleTech}
+            onResetFilters={handleResetFilters}
+            onSearchChange={setSearchQuery}
+          />
         </div>
 
         {/* Projects Display */}
@@ -700,13 +643,8 @@ export const Projects = ({ data }: ProjectsProps) => {
           </div>
         ) : (
           <>
-            {/* Mobile Accordion View */}
             {viewMode === 'mobile-accordion' && (
-              <div 
-                className="flex flex-col gap-3"
-                role="list"
-                aria-label="Projets en accordéon"
-              >
+              <div className="flex flex-col gap-3" role="list" aria-label="Projets en accordéon">
                 {filteredProjects.map((project, index) => (
                   <div
                     key={project.id}
@@ -725,7 +663,6 @@ export const Projects = ({ data }: ProjectsProps) => {
               </div>
             )}
 
-            {/* Grid View */}
             {viewMode === 'grid' && (
               <div 
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -745,13 +682,8 @@ export const Projects = ({ data }: ProjectsProps) => {
               </div>
             )}
 
-            {/* List View (inchangée, simplifiée) */}
             {viewMode === 'list' && (
-              <div 
-                className="flex flex-col gap-4"
-                role="list"
-                aria-label="Projets en liste"
-              >
+              <div className="flex flex-col gap-4" role="list" aria-label="Projets en liste">
                 {filteredProjects.map((project, index) => (
                   <div
                     key={project.id}
