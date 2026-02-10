@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { TechnologyFilter } from './TechnologyFilter';
+import { ProjectDetailModal } from './ProjectDetailModal';
 
 interface ProjectsProps {
   data: PortfolioData;
@@ -42,12 +43,14 @@ const MobileAccordionItem = ({
   project, 
   isDark,
   isOpen,
-  onToggle
+  onToggle,
+  onProjectClick
 }: { 
   project: PortfolioData['projects'][0];
   isDark: boolean;
   isOpen: boolean;
   onToggle: () => void;
+  onProjectClick?: (id: string) => void;
 }) => {
   const allTechnologies = [
     ...project.technologies.core,
@@ -66,7 +69,10 @@ const MobileAccordionItem = ({
       `}
     >
       <button
-        onClick={onToggle}
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggle();
+        }}
         aria-expanded={isOpen}
         aria-controls={`project-content-${project.id}`}
         className={`
@@ -109,10 +115,16 @@ const MobileAccordionItem = ({
           ${isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}
         `}
       >
-        <div className={`
-          px-4 pb-4 space-y-4
-          ${isDark ? 'border-t border-gray-700' : 'border-t border-gray-200'}
-        `}>
+        <div 
+          className={`
+            px-4 pb-4 space-y-4 cursor-pointer
+            ${isDark ? 'border-t border-gray-700 hover:bg-gray-700/30' : 'border-t border-gray-200 hover:bg-gray-100'}
+          `}
+          onClick={() => onProjectClick?.(project.id)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && onProjectClick?.(project.id)}
+        >
           <p className={`
             pt-4 text-sm leading-relaxed
             ${isDark ? 'text-gray-300' : 'text-gray-600'}
@@ -179,6 +191,7 @@ const MobileAccordionItem = ({
                 href={project.links.github || project.links.backend || project.links.frontend || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
                 className={`
                   flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
                   ${isDark 
@@ -196,6 +209,7 @@ const MobileAccordionItem = ({
                 href={project.links.demo}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
                 className={`
                   flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
                   ${isDark 
@@ -213,6 +227,7 @@ const MobileAccordionItem = ({
                 href={project.links.docs}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
                 className={`
                   flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
                   ${isDark 
@@ -235,10 +250,12 @@ const MobileAccordionItem = ({
 // Composant: ProjectCard
 const ProjectCard = ({ 
   project, 
-  isDark 
+  isDark,
+  onClick
 }: { 
   project: PortfolioData['projects'][0];
   isDark: boolean;
+  onClick?: (id: string) => void;
 }) => {
   const allTechnologies = [
     ...project.technologies.core,
@@ -248,8 +265,9 @@ const ProjectCard = ({
 
   return (
     <article
+      onClick={() => onClick?.(project.id)}
       className={`
-        group relative flex flex-col h-full rounded-xl border transition-all duration-300 ease-out
+        group relative flex flex-col h-full rounded-xl border transition-all duration-300 ease-out cursor-pointer
         hover:-translate-y-2 hover:shadow-xl
         ${isDark 
           ? 'bg-gray-800/50 border-gray-700 hover:bg-gray-800 hover:border-gray-600' 
@@ -257,6 +275,9 @@ const ProjectCard = ({
         }
       `}
       aria-labelledby={`project-title-${project.id}`}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onClick?.(project.id)}
     >
       <div className={`
         px-6 py-4 rounded-t-xl border-b transition-colors duration-300
@@ -387,6 +408,7 @@ const ProjectCard = ({
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }
               `}
+              onClick={(e) => e.stopPropagation()}
             >
               <Github size={16} />
               <span>Code</span>
@@ -409,6 +431,7 @@ const ProjectCard = ({
                   : 'bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-200'
                 }
               `}
+              onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink size={16} />
               <span>Demo</span>
@@ -428,6 +451,7 @@ const ProjectCard = ({
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }
               `}
+              onClick={(e) => e.stopPropagation()}
             >
               <Terminal size={16} />
               <span>API</span>
@@ -445,7 +469,8 @@ export const Projects = ({ data }: ProjectsProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
   const [openAccordionId, setOpenAccordionId] = useState<string | null>(null);
-  const [isFilterVisible, setIsFilterVisible] = useState(true);
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -513,6 +538,32 @@ export const Projects = ({ data }: ProjectsProps) => {
   const handleAccordionToggle = (projectId: string) => {
     setOpenAccordionId(prev => prev === projectId ? null : projectId);
   };
+
+  const handleProjectClick = (projectId: string) => {
+    setSelectedProjectId(projectId);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProjectId(null);
+  };
+
+  const handleNavigate = (direction: 'prev' | 'next') => {
+    if (!selectedProjectId) return;
+    
+    const currentIndex = filteredProjects.findIndex(p => p.id === selectedProjectId);
+    if (currentIndex === -1) return;
+
+    let newIndex: number;
+    if (direction === 'prev') {
+      newIndex = currentIndex === 0 ? filteredProjects.length - 1 : currentIndex - 1;
+    } else {
+      newIndex = currentIndex === filteredProjects.length - 1 ? 0 : currentIndex + 1;
+    }
+
+    setSelectedProjectId(filteredProjects[newIndex].id);
+  };
+
+  const selectedProject = filteredProjects.find(p => p.id === selectedProjectId) || null;
 
   return (
     <section 
@@ -657,6 +708,7 @@ export const Projects = ({ data }: ProjectsProps) => {
                       isDark={isDark}
                       isOpen={openAccordionId === project.id}
                       onToggle={() => handleAccordionToggle(project.id)}
+                      onProjectClick={handleProjectClick}
                     />
                   </div>
                 ))}
@@ -676,7 +728,11 @@ export const Projects = ({ data }: ProjectsProps) => {
                     style={{ animationDelay: `${index * 100}ms` }}
                     role="listitem"
                   >
-                    <ProjectCard project={project} isDark={isDark} />
+                    <ProjectCard 
+                      project={project} 
+                      isDark={isDark} 
+                      onClick={handleProjectClick}
+                    />
                   </div>
                 ))}
               </div>
@@ -691,7 +747,11 @@ export const Projects = ({ data }: ProjectsProps) => {
                     style={{ animationDelay: `${index * 100}ms` }}
                     role="listitem"
                   >
-                    <ProjectCard project={project} isDark={isDark} />
+                    <ProjectCard 
+                      project={project} 
+                      isDark={isDark} 
+                      onClick={handleProjectClick}
+                    />
                   </div>
                 ))}
               </div>
@@ -767,6 +827,15 @@ export const Projects = ({ data }: ProjectsProps) => {
           </div>
         </div>
       </div>
+
+      {/* Project Detail Modal */}
+      <ProjectDetailModal
+        project={selectedProject}
+        isOpen={!!selectedProjectId}
+        onClose={handleCloseModal}
+        onNavigate={handleNavigate}
+        hasNavigation={filteredProjects.length > 1}
+      />
     </section>
   );
 };

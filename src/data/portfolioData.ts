@@ -116,12 +116,12 @@ export const getInitialPortfolioData = (): PortfolioData => {
           "Implémenté une authentification multi-rôles (Admin / Client) basée sur OAuth2 avec Laravel Passport.",
           "Conçu un système avancé de tri, filtrage et recherche (solde, type, statut, dates, nom, prénom, NCI).",
           "Génération automatique de mots de passe sécurisés avec obligation de changement à la première connexion.",
-          "Mise en place d’un système de soft delete avec archivage automatique vers une base PostgreSQL secondaire (Neon).",
+          "Mise en place d'un système de soft delete avec archivage automatique vers une base PostgreSQL secondaire (Neon).",
           "Déploiement de l'application en production sur Render avec PostgreSQL Railway.",
-          "Développement d’un système de blocage/déblocage automatique des comptes via des Jobs et Scheduler Laravel.",
-          "Intégration d’une documentation interactive complète Swagger/OpenAPI.",
+          "Développement d'un système de blocage/déblocage automatique des comptes via des Jobs et Scheduler Laravel.",
+          "Intégration d'une documentation interactive complète Swagger/OpenAPI.",
           "Création de règles de validation personnalisées pour les formats Sénégalais (+221, NCI 13 chiffres).",
-          "Mise en place d’un système de logging complet pour traçabilité et audit utilisateur.",
+          "Mise en place d'un système de logging complet pour traçabilité et audit utilisateur.",
           "Écriture de tests unitaires et fonctionnels pour les fonctionnalités critiques.",
           "Support des requêtes complexes : pagination, tri, filtrage, recherche plein texte.",
           "Optimisation SQL et utilisation de Doctrine DBAL pour introspection avancée."
@@ -155,13 +155,53 @@ export const getInitialPortfolioData = (): PortfolioData => {
         ],
         links: {
           github: "https://github.com/KalidouGUISSE/projetlaravel/tree/production",
-          // docs: "https://kalidou-guisse-projetlaravel.onrender.com/api/documentation",
-        }
+        },
+        dates: {
+          startDate: "Janvier 2025",
+          endDate: "Février 2025"
+        },
+        status: {
+          label: "Terminé",
+          completion: 100
+        },
+        stakeholders: [
+          { name: "Birame Bailla Wane", role: "Formateur Backend", organization: "Sonatel Académie" },
+          { name: "Aly Tall Niang", role: "Formateur Frontend", organization: "Sonatel Académie" }
+        ],
+        objectives: [
+          "Développer une API RESTful conforme aux standards",
+          "Implémenter l2",
+          "'authentification OAuthAssurer la sécurité des données bancaires",
+          "Faciliter l'intégration avec d'autres systèmes"
+        ],
+        deliverables: [
+          "API RESTful complète (25+ endpoints)",
+          "Documentation Swagger/OpenAPI",
+          "Base de données PostgreSQL avec archivage",
+          "Tests unitaires et fonctionnels"
+        ],
+        milestones: [
+          "Mise en place de l'architecture Laravel",
+          "Implémentation de l'authentification",
+          "Développement des endpoints CRUD",
+          "Documentation et tests",
+          "Déploiement en production"
+        ],
+        resources: [
+          "Serveur Render (Production)",
+          "Base de données Neon PostgreSQL",
+          "GitHub Actions pour CI/CD"
+        ],
+        comments: [
+          "Projet très formateur sur les API REST et l'authentification sécurisée.",
+          "L'utilisation de Laravel Passport a permis de comprendre en profondeur OAuth2.",
+          "Le déploiement sur Render a confronté aux réalités de la production."
+        ]
       },
       {
         id: 'proj4',
-        title: 'OM Pay – Application de Paiement Mobile Full-Stack',
-        shortDescription: "Conception et développement end-to-end d’une application de paiement mobile sécurisée destinée au marché sénégalais, intégrant authentification OTP, transactions financières et application mobile native.",
+        title: 'SamaOM Pay – Application de transactions Mobile',
+        shortDescription: "Conception et développement end-to-end d'une application de paiement mobile sécurisée destinée au marché sénégalais, intégrant authentification OTP, transactions financières et application mobile native.",
         achievements: [
           "Développement from-scratch avec architecture SOLID + MVC",
           "Système complet de gestion des apprenants et promotions",
@@ -176,16 +216,51 @@ export const getInitialPortfolioData = (): PortfolioData => {
           tools: ["Git", "Docker", "Railway / Render"],
           packages: [""]
         },
-
         videos : [
           "/assete/ompay/ompay.mp4",
         ],
         links: {
-          // backend: "https://github.com/KalidouGUISSE/OM-Pay",
           frontend: "https://github.com/KalidouGUISSE/OM-Pay-Fluter",
           docs: "https://om-pay.onrender.com/api/documentation"
-        }
-        
+        },
+        dates: {
+          startDate: "Février 2025",
+          endDate: "Mars 2025"
+        },
+        status: {
+          label: "En cours",
+          completion: 75
+        },
+        stakeholders: [
+          { name: "Birame Bailla Wane", role: "Architecte Logiciel", organization: "Sonatel Académie" }
+        ],
+        objectives: [
+          "Créer une application de paiement mobile sécurisée",
+          "Intégrer l'authentification OTP",
+          "Gérer les transactions financières",
+          "Assurer la conformité avec les normes sénégalaises"
+        ],
+        deliverables: [
+          "Application mobile Flutter fonctionnelle",
+          "Système d'authentification OTP",
+          "Module de transactions",
+          "Documentation technique"
+        ],
+        milestones: [
+          "Conception de l'architecture",
+          "Implémentation de l'authentification",
+          "Développement du module de paiement",
+          "Tests de sécurité"
+        ],
+        resources: [
+          "Flutter SDK",
+          "API REST backend",
+          "Services de notification"
+        ],
+        comments: [
+          "Premier projet Flutter complet, très bonne expérience de développement mobile.",
+          "L'intégration des paiements a nécessité beaucoup de recherches sur la sécurité."
+        ]
       },
       {
         id: "p2",
@@ -197,8 +272,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
           "Implémentation d'un système multi-entreprises avec isolation complète des données et contrôle d'accès granulaire",
           "Génération automatique de bulletins de salaire et reçus de paiement en PDF avec Puppeteer et PDFKit",
           "Architecture modulaire avec séparation claire des couches (controllers, services, repositories) utilisant Prisma ORM",
-          "Documentation API interactive complète avec Swagger UI et tests automatiques des endpoints",
-          // "Déploiement automatisé avec Docker Compose et configuration Render pour production"
+          "Documentation API interactive complète avec Swagger UI et tests automatiques des endpoints"
         ],
         technologies: {
           core: ["Node.js", "TypeScript", "Express.js", "Prisma", "PostgreSQL"],
@@ -210,9 +284,49 @@ export const getInitialPortfolioData = (): PortfolioData => {
         ],
         links: {
           frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
-          backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
-          // demo: "https://backend-gestion-salaire.onrender.com/api-docs",
-        }
+          backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire"
+        },
+        dates: {
+          startDate: "Décembre 2024",
+          endDate: "Janvier 2025"
+        },
+        status: {
+          label: "Terminé",
+          completion: 100
+        },
+        stakeholders: [
+          { name: "Birame Bailla Wane", role: "Formateur Backend", organization: "Sonatel Académie" }
+        ],
+        objectives: [
+          "Développer une API REST sécurisée pour la gestion des salaires",
+          "Implémenter le multi-entreprises",
+          "Générer automatiquement les bulletins de paie",
+          "Assurer l'intégrité des données"
+        ],
+        deliverables: [
+          "API REST Node.js/TypeScript complète",
+          "Module de génération PDF",
+          "Système d'authentification JWT",
+          "Documentation Swagger"
+        ],
+        milestones: [
+          "Mise en place de l'architecture",
+          "Implémentation Prisma ORM",
+          "Développement des endpoints",
+          "Intégration PDFKit/Puppeteer",
+          "Tests et documentation"
+        ],
+        resources: [
+          "Node.js Runtime",
+          "PostgreSQL Database",
+          "Prisma ORM",
+          "Docker Compose"
+        ],
+        comments: [
+          "Projet très complet couvrant tous les aspects d'une API professionnelle.",
+          "L'utilisation de Prisma a enormemente simplifié les interactions avec la base de données.",
+          "La génération de PDF a été un défi technique intéressant."
+        ]
       },
       {
         id: "p3",
@@ -238,9 +352,47 @@ export const getInitialPortfolioData = (): PortfolioData => {
         ],
         links: {
           backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
-          frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
-          // demo: "https://frontend-gestion-salaire.vercel.app"
-        }
+          frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire"
+        },
+        dates: {
+          startDate: "Janvier 2025",
+          endDate: "Février 2025"
+        },
+        status: {
+          label: "Terminé",
+          completion: 100
+        },
+        stakeholders: [
+          { name: "Aly Tall Niang", role: "Formateur Frontend", organization: "Sonatel Académie" }
+        ],
+        objectives: [
+          "Créer une interface utilisateur moderne et accessible",
+          "Implémenter des tableaux de données interactifs",
+          "Intégrer des graphiques analytiques",
+          "Optimiser les performances"
+        ],
+        deliverables: [
+          "Application React complète",
+          "Module de scan QR",
+          "Tableaux interactifs TanStack",
+          "Graphiques Recharts"
+        ],
+        milestones: [
+          "Setup du projet React 19",
+          "Implémentation des composants UI",
+          "Intégration API avec React Query",
+          "Tests et optimisation"
+        ],
+        resources: [
+          "React 19",
+          "Tailwind CSS",
+          "Vite Build Tool",
+          "React Query"
+        ],
+        comments: [
+          "React 19 apporte des améliorations significatives en termes de performance.",
+          "L'utilisation de TanStack Table a permis une gestion efficace des données volumineuses."
+        ]
       },
       {
         id: 'proj3',
@@ -266,99 +418,48 @@ export const getInitialPortfolioData = (): PortfolioData => {
         ],
         links: {
           github: "https://github.com/KalidouGUISSE/gestionCargaisonV-"
-        }
-      },
-
-      // {
-      //   id: 'proj4',
-      //   title: 'Gestion des Apprenants ODC',
-      //   shortDescription: "Plateforme académique complète pour la gestion d'un centre de formation avec automatisation administrative et suivi pédagogique détaillé.",
-      //   achievements: [
-      //     "Développement from-scratch avec architecture SOLID + MVC",
-      //     "Système complet de gestion des apprenants et promotions",
-      //     "Suivi des absences, notes et filières académiques",
-      //     "Automatisation des tâches administratives répétitives",
-      //     "Interface intuitive pour enseignants et administrateurs",
-      //     "Génération automatique de rapports et statistiques",
-      //     "Sécurité avancée avec gestion des rôles et permissions"
-      //   ],
-      //   technologies: {
-      //     core: ["PHP", "MySQL", "HTML/CSS"],
-      //     tools: ["Git", "XAMPP", "VS Code"],
-      //     packages: ["MVC Framework", "PDO", "Bootstrap"]
-      //   },
-      //   links: {
-      //     github: "https://github.com/yourusername/odc-student-management"
-      //   }
-      // },
-      // {
-      //   id: 'proj5',
-      //   title: 'Gestion de Pharmacie',
-      //   shortDescription: "Solution complète d'automatisation pour pharmacies avec gestion intelligente des stocks et système d'alertes prédictives.",
-      //   achievements: [
-      //     "Développement d'application web full-stack Laravel",
-      //     "Système de gestion automatisée des stocks et inventaires",
-      //     "Implémentation d'alertes pour produits en rupture ou périmés",
-      //     "Plateforme d'échange B2B entre pharmacies",
-      //     "Interface client pour consultation de disponibilité",
-      //     "Génération automatique de rapports de vente",
-      //     "Optimisation des performances pour gros volumes de données"
-      //   ],
-      //   technologies: {
-      //     core: ["PHP", "Laravel", "MySQL"],
-      //     tools: ["Composer", "Git", "VS Code"],
-      //     packages: ["Laravel Framework", "Eloquent ORM", "Blade Templates"]
-      //   },
-      //   links: {
-      //     github: "https://github.com/yourusername/pharmacy-management"
-      //   }
-      // },
-      // {
-      //   id: 'proj6',
-      //   title: 'MaxitSA – Application de Transfert d\'Argent',
-      //   shortDescription: "Application de transfert d'argent avec architecture propre et suivi temps réel des transactions financières.",
-      //   achievements: [
-      //     "Architecture Repository-Service-Controller propre",
-      //     "Développement d'API REST complète pour transferts",
-      //     "Gestion sécurisée des comptes utilisateurs et transactions",
-      //     "Suivi temps réel avec notifications push",
-      //     "Intégration de stockage cloud pour données sensibles",
-      //     "Dockerisation complète pour déploiement scalable",
-      //     "Tests automatisés et monitoring de performance"
-      //   ],
-      //   technologies: {
-      //     core: ["PHP", "JavaScript", "MySQL"],
-      //     tools: ["Docker", "Git", "Jenkins"],
-      //     packages: ["Laravel", "Socket.io", "AWS SDK", "PHPUnit"]
-      //   },
-      //   links: {
-      //     github: "https://github.com/yourusername/maxitsa",
-      //     demo: "https://maxitsa-demo.onrender.com"
-      //   }
-      // },
-      // {
-      //   id: 'proj7',
-      //   title: 'Clone WhatsApp',
-      //   shortDescription: "Application de messagerie web moderne inspirée de WhatsApp avec interface responsive et fonctionnalités temps réel.",
-      //   achievements: [
-      //     "Développement d'interface utilisateur moderne et responsive",
-      //     "Implémentation de système de messagerie temps réel",
-      //     "Gestion avancée des conversations et contacts",
-      //     "Système de notifications push pour nouveaux messages",
-      //     "Optimisation des performances pour mobile et desktop",
-      //     "Interface intuitive avec animations fluides",
-      //     "Support multi-navigateurs et compatibilité cross-platform"
-      //   ],
-      //   technologies: {
-      //     core: ["JavaScript", "HTML5", "CSS3"],
-      //     tools: ["Git", "VS Code", "Chrome DevTools"],
-      //     packages: ["Socket.io", "LocalStorage API", "Web Notifications API"]
-      //   },
-      //   links: {
-      //     github: "https://github.com/yourusername/whatsapp-clone",
-      //     demo: "https://whatsapp-clone-demo.netlify.app"
-      //   }
-      // }
+        },
+        dates: {
+          startDate: "Novembre 2024",
+          endDate: "Décembre 2024"
+        },
+        status: {
+          label: "Terminé",
+          completion: 100
+        },
+        stakeholders: [
+          { name: "Birame Bailla Wane", role: "Formateur Backend", organization: "Sonatel Académie" }
+        ],
+        objectives: [
+          "Créer un système de gestion de cargaisons complet",
+          "Implémenter le suivi en temps réel",
+          "Gérer la logistique multi-modale",
+          "Assurer la fiabilité des calculs"
+        ],
+        deliverables: [
+          "Application web PHP/TypeScript",
+          "Module de tracking colis",
+          "Carte interactive Leaflet",
+          "Dashboard analytique"
+        ],
+        milestones: [
+          "Architecture du projet",
+          "Backend PHP routing",
+          "Frontend TypeScript",
+          "Intégration cartes",
+          "Tests et validation"
+        ],
+        resources: [
+          "PHP 8",
+          "TypeScript",
+          "Leaflet Maps",
+          "Chart.js"
+        ],
+        comments: [
+          "Premier projet combinant PHP et TypeScript, expérience enrichissante.",
+          "L'intégration de Leaflet a permis de créer une carte interactive pour le suivi."
+        ]
+      }
     ],
     tutors: [
       {

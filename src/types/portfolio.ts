@@ -56,6 +56,31 @@ export interface Project {
     docs?: string;
     demo?: string;
   };
+  // Nouveaux champs pour les détails étendus
+  dates?: {
+    startDate?: string;
+    endDate?: string;
+  };
+  status?: {
+    label: 'En cours' | 'Terminé' | 'En pause' | 'En développement' | 'Maintenance';
+    completion: number;
+  };
+  stakeholders?: {
+    name: string;
+    role: string;
+    organization?: string;
+    contact?: string;
+  }[];
+  objectives?: string[];
+  deliverables?: string[];
+  milestones?: string[];
+  resources?: string[];
+  comments?: string[];
+  documents?: {
+    name: string;
+    url: string;
+    type: 'pdf' | 'doc' | 'image' | 'link' | 'other';
+  }[];
 }
 
 export interface Tutor {
