@@ -54,7 +54,7 @@ export interface Project {
     backend?: string;
     frontend?: string;
     docs?: string;
-    demo?: string;
+    prod?: string;
   };
   // Nouveaux champs pour les détails étendus
   dates?: {

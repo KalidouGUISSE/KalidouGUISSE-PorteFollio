@@ -204,9 +204,9 @@ const MobileAccordionItem = ({
                 Code
               </a>
             )}
-            {project.links.demo && (
+            {project.links.prod && (
               <a
-                href={project.links.demo}
+                href={project.links.prod}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
@@ -219,7 +219,7 @@ const MobileAccordionItem = ({
                 `}
               >
                 <ExternalLink size={14} />
-                Demo
+                Prod
               </a>
             )}
             {project.links.docs && (
@@ -417,9 +417,9 @@ const ProjectCard = ({
         </div>
         
         <div className="flex items-center gap-2">
-          {project.links.demo && (
+          {project.links.prod && (
             <a
-              href={project.links.demo}
+              href={project.links.prod}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Démo de ${project.title}`}
@@ -434,7 +434,7 @@ const ProjectCard = ({
               onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink size={16} />
-              <span>Demo</span>
+              <span>Prod</span>
             </a>
           )}
           {project.links.docs && (
@@ -576,7 +576,9 @@ export const Projects = ({ data }: ProjectsProps) => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Projets Réalisés
             </h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full" />
+            {/* <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-blue-600 animate-expand shadow-lg"></div> */}
+
+            <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full animate-expand shadow-lg" />
             <p className="text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl">
               {filteredProjects.length} projet{filteredProjects.length !== 1 ? 's' : ''} trouvé{filteredProjects.length !== 1 ? 's' : ''}
             </p>
@@ -625,11 +627,40 @@ export const Projects = ({ data }: ProjectsProps) => {
               <ChevronDown size={16} />
               <span className="hidden sm:inline">Accordéon</span>
             </button>
+            {/* Filter Toggle Button */}
+            <button
+              onClick={() => setIsFilterVisible(!isFilterVisible)}
+              className={ `
+                flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+                transition-all duration-200
+                ${isDark
+                  ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
+                }
+              `}
+              aria-expanded={isFilterVisible}
+              aria-controls="filter-section"
+            >
+              <Filter size={16} className={selectedTechs.length > 0 ? 'text-blue-500' : ''} />
+              <span>Filtres</span>
+              {selectedTechs.length > 0 && (
+                <span className="px-2 py-0.5 text-xs bg-blue-500 text-white rounded-full">
+                  {selectedTechs.length}
+                </span>
+              )}
+              <ChevronDown
+                size={16}
+                className={`
+                  transition-transform duration-200
+                  ${isFilterVisible ? 'rotate-180' : ''}
+                `}
+              />
+            </button>
           </div>
         </div>
 
         {/* Filter Toggle Button */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <button
             onClick={() => setIsFilterVisible(!isFilterVisible)}
             className={ `
@@ -658,7 +689,7 @@ export const Projects = ({ data }: ProjectsProps) => {
               `}
             />
           </button>
-        </div>
+        </div> */}
 
         {/* Search & Filters */}
         <div
@@ -801,13 +832,14 @@ export const Projects = ({ data }: ProjectsProps) => {
                 text-4xl font-bold mb-2
                 ${isDark ? 'text-green-400' : 'text-green-600'}
               `}>
-                {filteredProjects.filter(p => p.links.demo).length}
+                {filteredProjects.filter(p => p.links.prod).length}
               </div>
               <div className={`
                 text-sm font-medium uppercase tracking-wider
                 ${isDark ? 'text-gray-400' : 'text-gray-500'}
               `}>
-                Démos Live
+                {/* Démos Live */}
+                En production
               </div>
             </div>
             <div>

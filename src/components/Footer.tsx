@@ -11,7 +11,7 @@ export const Footer = () => {
             Kalidou GUISSE
           </h3>
           <p className="text-blue-100 dark:text-gray-300 text-lg mb-6">
-            Développeur Full-stack | Ingénieur Devops
+            Développeur Full-stack | DevOps
           </p>
 
           <div className="pt-6 border-t border-blue-400/30 dark:border-gray-700">

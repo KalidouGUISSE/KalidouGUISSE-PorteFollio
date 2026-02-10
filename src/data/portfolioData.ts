@@ -103,7 +103,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
       {
         id: 'lang4',
         name: 'Anglais',
-        level: 'Notions'
+        level: 'technique (lecture / documentation)'
       }
     ],
     projects: [
@@ -166,7 +166,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
         },
         stakeholders: [
           { name: "Birame Bailla Wane", role: "Formateur Backend", organization: "Sonatel Académie" },
-          { name: "Aly Tall Niang", role: "Formateur Frontend", organization: "Sonatel Académie" }
+          // { name: "Aly Tall Niang", role: "Formateur Frontend", organization: "Sonatel Académie" }
         ],
         objectives: [
           "Développer une API RESTful conforme aux standards",
@@ -221,7 +221,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
         ],
         links: {
           frontend: "https://github.com/KalidouGUISSE/OM-Pay-Fluter",
-          docs: "https://om-pay.onrender.com/api/documentation"
+          prod: "https://om-pay.onrender.com/api/documentation"
         },
         dates: {
           startDate: "Février 2025",
@@ -229,7 +229,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
         },
         status: {
           label: "En cours",
-          completion: 75
+          completion: 90
         },
         stakeholders: [
           { name: "Birame Bailla Wane", role: "Architecte Logiciel", organization: "Sonatel Académie" }
@@ -284,15 +284,15 @@ export const getInitialPortfolioData = (): PortfolioData => {
         ],
         links: {
           frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire",
-          backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire"
+          prod: "https://frontend-gestion-salaire.vercel.app/login",
         },
         dates: {
           startDate: "Décembre 2024",
           endDate: "Janvier 2025"
         },
         status: {
-          label: "Terminé",
-          completion: 100
+          label: "En pause",
+          completion: 85
         },
         stakeholders: [
           { name: "Birame Bailla Wane", role: "Formateur Backend", organization: "Sonatel Académie" }
@@ -351,7 +351,7 @@ export const getInitialPortfolioData = (): PortfolioData => {
           "/assete/frontGestionsalaire/video.mp4"
         ],
         links: {
-          backend: "https://github.com/KalidouGUISSE/backend-Gestion-Salaire",
+          prod: "https://frontend-gestion-salaire.vercel.app",
           frontend: "https://github.com/KalidouGUISSE/-frontend-Gestion-Salaire"
         },
         dates: {
@@ -359,8 +359,8 @@ export const getInitialPortfolioData = (): PortfolioData => {
           endDate: "Février 2025"
         },
         status: {
-          label: "Terminé",
-          completion: 100
+          label: "En pause",
+          completion: 80
         },
         stakeholders: [
           { name: "Aly Tall Niang", role: "Formateur Frontend", organization: "Sonatel Académie" }
@@ -424,8 +424,8 @@ export const getInitialPortfolioData = (): PortfolioData => {
           endDate: "Décembre 2024"
         },
         status: {
-          label: "Terminé",
-          completion: 100
+          label: "En pause",
+          completion: 80
         },
         stakeholders: [
           { name: "Birame Bailla Wane", role: "Formateur Backend", organization: "Sonatel Académie" }
